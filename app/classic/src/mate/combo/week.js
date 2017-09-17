@@ -1,0 +1,21 @@
+Ext.define('APP.mate.combo.week',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'comboWeek',
+	store:{
+		fields:['week', 'weekname'],
+		data:[
+			[1,'周一'],
+			[2,'周二'],
+			[3,'周三'],
+			[4,'周四'],
+			[5,'周五'],
+			[6,'周六'],
+			[7,'周末']
+		]
+	},
+	emptyText:'星期..',
+	width:120,
+	name:'week',
+	valueField:'week',
+	displayField:'weekname'
+});

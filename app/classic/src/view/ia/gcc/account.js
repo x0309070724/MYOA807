@@ -1,0 +1,74 @@
+﻿Ext.define('APP.view.ia.gcc.account',{
+    extend:'Ext.grid.Panel',
+    controller:'ia.gcc',
+	store:{
+		type:'cross',
+		autoLoad:true,
+		remoteSort:false,
+		model:'APP.model.account.record',
+		sorters:[{property:'regdate',direction:'DESC'}],
+		grouper:{groupFn:function(record){return Ext.Date.format(record.data.regdate,'Y-m-d')},property:'regdate',direction:'DESC'},
+		pageSize:30,	
+		proxy:{
+			url:Boot.appUrl('/ia/gcc/account/getAccount.do')
+		}
+	},
+	dockedItems:[
+		{dock:'top',xtype:'toolbar',items:[
+			{xtype:'searchbar',
+				fields:[
+					{xtype:'segmentedfield',segmented:{
+						name:'platform',defaults:{minWidth:60},
+						items:[
+							{text:'ABC',value:'ABC'},
+							{text:'GCC',value:'GCC'},
+							{text:'ALL',value:'',pressed:true}
+						]
+					}},
+					{xtype:'segmentedfield',segmented:{
+						name:'freed',defaults:{minWidth:100},
+						items:[
+							{text:'已释放',value:1},
+							{text:'ALL',value:'',pressed:true}
+						]
+					}},
+					{emptyText:'关键字...',xtype:'textfield',name:'query',width:200}
+				]
+			},
+			'->',
+			{iconCls:'f-mt mt-creat',text:'GCC 员工离职',handler:'onGccStaffLeavingClick'},
+			'-',
+			{xtype:'refreshbutton'}
+		]},
+		{dock:'bottom',xtype:'pagingbar'}
+	],
+	columns:[
+		{xtype:'rownumberer'},
+		{text:'账号',dataIndex:'login',minWidth:140,flex:1,renderer:'returnLogin',summaryType:'count'},
+		{text:'账户信息',defaults:{sortable:true,width:100},columns:[
+			{text:'开户日期',dataIndex:'regdate',xtype:'datecolumn',format:'Y-m-d'},
+			{text:'开户时间',dataIndex:'regdate',xtype:'datecolumn',format:'H:i A'},
+			{text:'平台',dataIndex:'platform'},					
+			{text:'手机号',dataIndex:'mobile',width:120},
+			{text:'QQ',dataIndex:'qq',width:120},
+			{text:'Email',dataIndex:'email',width:200,hidden:true},
+			{text:'代理',dataIndex:'agent',width:140,renderer:'returnAgentAccount'},
+			{text:'销售',dataIndex:'salesman_namecn',width:120,renderer:'returnSalesman'},
+			{text:'组',dataIndex:'group',width:100},					
+			{text:'杠杆',dataIndex:'leverage',width:80,align:'center',renderer:'returnLeverage'}
+		]},
+		{text:'出入金',defaults:{sortable:true,width:120,summaryType:'sum',summaryRenderer:'returnShowMoney'},columns:[
+			{text:'入金',dataIndex:'funds_deposit',renderer:'returnTotalDeposit'},
+			{text:'出金',dataIndex:'funds_withdrawal',renderer:'returnTotalWithdrawal'},
+			{text:'净入金',dataIndex:'funds_net_deposit',renderer:'returnShowMoney',tdCls:'x-ui-active x-ui-text-blue',align:'right',width:120}
+		]},
+		{text:'账户资产',defaults:{sortable:true,width:100,align:'right',renderer:'returnShowMoney',summaryType:'sum',summaryRenderer:'returnShowMoney'},columns:[
+			{text:'信用',dataIndex:'credit'},
+			{text:'余额',dataIndex:'balance',tdCls:'x-ui-text-green'}
+		]}
+	],
+	features:[{ftype:'groupingsummary'},{ftype:'summary',dock:'bottom'}],
+	listeners:{ 
+		itemdblclick:'onShowAccountDetail'
+	}
+});

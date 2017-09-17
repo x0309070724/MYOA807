@@ -1,0 +1,13 @@
+Ext.define('APP.store.hr.staff.tree',{
+    extend:'Ext.data.TreeStore',
+	alias:'store.hrStaffTree',
+	rootVisible:false,
+	lines:true,
+	autoLoad:true,
+	sorters:[{property:'id',direction:'desc'}],
+	proxy:{
+		url:Boot.appUrl('/getOrgTree.do'),
+		extraParams:{cmd:'staff'},
+		reader:{type:'json',rootProperty:'children'}
+	}	
+});

@@ -1,0 +1,23 @@
+﻿Ext.define('APP.view.sd.mgr.res.storage',{
+    extend:'Ext.Panel',
+	layout:'fit',
+    controller:'sd.mgr.res',
+	defaults:{border:false},
+	dockedItems:[
+		{dock:'top',xtype:'toolbar',items:[
+			{xtype:'segmentedbutton',defaults:{minWidth:100},reference:'csr',
+				items:[
+					{text:'总库存',widget:'sd.mgr.res.storageCompany',pressed:true},
+					{text:'团队库存',widget:'sd.mgr.res.storageTeam'},
+					{text:'员工库存',widget:'sd.mgr.res.storageStaff'},
+				],
+				listeners:{ 
+					change:'onMateChangeView'
+				}
+			},
+			//'-',
+			'->',
+			{xtype:'refreshbutton'}
+		]}
+	]
+});

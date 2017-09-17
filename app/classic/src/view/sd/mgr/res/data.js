@@ -1,0 +1,62 @@
+﻿Ext.define('APP.view.sd.mgr.res.data',{
+    extend:'Ext.Container',
+    controller:'sd.mgr.res',
+	padding:1,
+	layout:{type:'hbox',align:'stretch'},
+	items:[
+		{xtype:'panel',title:'电资概览',width:600,scrollable:'y',
+			layout:{type:'vbox',align:'stretch'},
+			defaults:{layout:{type:'hbox',align:'stretch'},userCls:'x-ui-gauge-group',defaults:{xtype:'gauge',flex:1,value:0}},
+			reference:'storageGauge'
+		},
+		{xtype:'grid',title:'电资明细',minWidth:600,flex:1,margin:'0 0 0 1',
+			store:{
+				autoLoad:true,
+				type:'sales.data',
+				proxy:{extraParams:{app:'resources'}}
+			},
+			dockedItems:[
+				{dock:'top',xtype:'toolbar',items:[
+					{xtype:'searchbar',
+						fields:[
+							{xtype:'fieldSalesStatus'},
+							{xtype:'fieldSalesTrack'},
+							{xtype:'fieldSalesLevel'},
+							{emptyText:'团队...',xtype:'comboCompanyTeam',root:103,name:'teamid'},
+							{emptyText:'销售...',xtype:'comboCompanyStaff',root:103,name:'staffid'},
+							{emptyText:'评星...',xtype:'comboRating',name:'rating',width:100},
+							{emptyText:'关键字...',xtype:'textfield',name:'query',width:140}
+						]
+					},
+					'->',
+					{xtype:'refreshbutton'}
+				]},
+				{dock:'bottom',xtype:'pagingbar'}
+			],
+			columns:[
+				{xtype:'rownumberer'},
+				{text:'电资',dataIndex:'recycling_staff_count',renderer:'returnResMobile',minWidth:180,flex:1},
+				{text:'电资信息',defaults:{sortable:true},columns:[
+					{text:'区域',xtype:'templatecolumn',dataIndex:'province',tpl:'{province} {city}',width:100},
+					{text:'分级',dataIndex:'level',width:70,renderer:'returnResLevel'},
+					{text:'评星',xtype:'widgetcolumn',dataIndex:'rating',width:88,widget:{xtype:'rating',userCls:'x-ui-default'}},					
+					{text:'状态',dataIndex:'status',width:110,renderer:'returnResStatus'}
+				]},
+				{text:'跟进记录',defaults:{sortable:true},columns:[
+					{text:'分配日期',dataIndex:'staffdate',width:80},
+					{text:'销售员',dataIndex:'staffid',xtype:'templatecolumn',tpl:'{staff_namecn} <s>{staff_name}</s><r>{team_name}</r>',width:160},
+					{text:'历史跟进',dataIndex:'track_count',width:88,renderer:'returnResTrackHistory'},
+					{text:'累计通话',dataIndex:'call_duration',width:100,renderer:'returnResCall'},
+					{text:'状态',dataIndex:'track_time',width:100,renderer:'returnResTrackTime'}
+				]}
+			],
+			viewConfig:{enableTextSelection:false},
+			listeners:{
+				itemdblclick:'onDataShowDetail'
+			}
+		}
+	],
+	listeners:{
+		afterrender:'onStorageRender'
+	}
+});

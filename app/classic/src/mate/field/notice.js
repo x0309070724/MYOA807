@@ -1,0 +1,20 @@
+Ext.define('APP.mate.field.notice',{
+    extend:'Ext.form.CheckboxGroup',
+	alias:'widget.noticefield',
+	fieldLabel:'发送通知',
+	columns:5,
+	allowBlank:true,
+	values:[1,1,1],
+	items:[
+		{boxLabel:'短信',name:'isSendSms',inputValue:1},
+		{boxLabel:'邮件',name:'isSendMail',inputValue:1},
+		{boxLabel:'微信',name:'isSendWechat',inputValue:1}
+	],
+	initComponent:function(){
+		var me=this;	
+		this.callParent();
+		Ext.Array.each(me.values,function(v,i){
+			me.items.items[i].setValue(v);
+		})
+	}
+});

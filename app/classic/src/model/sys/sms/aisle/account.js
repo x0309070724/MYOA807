@@ -1,0 +1,16 @@
+Ext.define('APP.model.sys.sms.aisle.account',{
+	extend:'Ext.data.Model',
+	idProperty:'id',
+	fields:[
+		{name:'charset',type:'string'},
+		{name:'defaultParam',type:'string'},
+		{name:'enable',type:'int'},
+		{name:'id',type:'int'},
+		{name:'method',type:'string'},
+		{name:'name',type:'string'},
+		{name:'paramContentName',type:'string'},
+		{name:'paramMobileName',type:'string'},
+		{name:'textlen',type:'int'},
+		{name:'url',type:'string'}
+	]
+});

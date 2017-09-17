@@ -1,0 +1,20 @@
+﻿Ext.define('APP.view.rd.account.popup',{
+    extend:'Ext.grid.Panel',
+    controller:'rd',
+	xtype:'rdAccountPopup',
+	columns:[
+		{xtype:'rownumberer'},
+		{text:'账号',dataIndex:'login',minWidth:140,flex:1,renderer:'returnLogin',summaryType:'count'},
+		{text:'开户日期',dataIndex:'regdate',width:100,xtype:'datecolumn',format:'Y-m-d'},
+		{text:'账户性质',dataIndex:'property_name',width:100},
+		{text:'代理',dataIndex:'agent',width:140,renderer:'returnAgentAccount'},
+		{text:'销售',dataIndex:'salesman_namecn',width:120,renderer:'returnSalesman'},
+		{text:'净入金',dataIndex:'funds_net_deposit',align:'right',width:100,tdCls:'x-ui-active x-ui-text-blue',renderer:'returnShowMoney',summaryType:'sum',summaryRenderer:'returnShowMoney'},
+		{text:'交易量',dataIndex:'trade_volume',width:80,align:'right',renderer:'returnNumber',summaryType:'sum',summaryRenderer:'returnNumber'},
+		{text:'账户余额',dataIndex:'balance',width:100,align:'right',tdCls:'x-ui-text-green',renderer:'returnShowMoney',summaryType:'sum',summaryRenderer:'returnShowMoney'}
+	],
+	features:[{ftype:'summary',dock:'bottom'}],
+	listeners:{
+		itemdblclick:'onShowAccountDetail'
+	}
+});

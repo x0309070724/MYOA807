@@ -1,0 +1,18 @@
+Ext.define('Override.chart.PolarChart',{
+    override:'Ext.chart.PolarChart',
+	config:{
+		//colors:["#7cb5ec","#f7a35c","#90ee7e","#7798BF","#aaeeee","#ff0066","#eeaaee","#55BF3B","#DF5353","#7798BF","#aaeeee"],
+		//legend:{docked:'bottom',border:1,style:{borderColor:'#99bce8',borderStyle:'solid'}},	
+		legend:false,
+		minWidth:300,
+		innerPadding:36,
+		border:true,
+		padding:1,
+		theme:'default-gradients',
+		interactions:['itemhighlight','rotatePie3d'],
+		animation:{duration:500,easing:'easeIn'},
+		listeners:{
+			itemhighlight:'onMateGridChartItemHighlight'
+		}
+	}
+});

@@ -1,0 +1,91 @@
+﻿Ext.define('APP.view.ia.account.apply.confirm',{
+    extend:'Ext.Container',
+    controller:'ia.account',
+	padding:1,
+	layout:{type:'hbox',align:'stretch'},
+	items:[
+		{xtype:'grid',title:'等待确认',flex:.5,
+			reference:'gridBase',
+			store:{
+				type:'account.apply',
+				autoLoad:true,
+				grouper:{groupFn:function(record){return Ext.Date.format(record.data.time,'Y-m-d')},property:'time',direction:'DESC'},		
+				proxy:{extraParams:{confirm:0,tested:0}}
+			},
+			dockedItems:[
+				{dock:'top',xtype:'toolbar',items:[
+					{xtype:'searchbar',
+						fields:[
+							{xtype:'segmentedfield',segmented:{
+								name:'confirm',
+								items:[
+									{tooltip:'待处理',iconCls:'f-mt mt-pause',value:0,pressed:true},
+									{tooltip:'未通过',iconCls:'f-mt mt-no',value:-1}
+								]
+							}},
+							{emptyText:'日期从',xtype:'startdatefield',name:'startdate'},
+							{emptyText:'日期至',xtype:'enddatefield',name:'enddate'},
+							{emptyText:'关键字',xtype:'textfield',name:'query',width:140}
+						]
+					},
+					'->',
+					{xtype:'refreshbutton'}
+				]},
+				{dock:'bottom',xtype:'pagingbar'}
+			],
+			multiSelect:false,
+			columns:[
+				{xtype:'rownumberer'},
+				{text:'申请日期',dataIndex:'time',xtype:'datecolumn',format:'Y-m-d'},
+				{text:'账号',dataIndex:'login',width:200,renderer:'returnLogin',flex:1},
+				{text:'代理',dataIndex:'agent',width:140,renderer:'returnAgentAccount'},
+				{text:'手机',dataIndex:'mobile',width:120},
+				{text:'邮箱',dataIndex:'email',width:200},
+				//{text:'证件',xtype:'templatecolumn',dataIndex:'identity_cardno',tpl:'{identity_country} {identity_cardno}<r><s>{same_identity_count}</s></r>',width:200},
+				{text:'销售',dataIndex:'salesman_namecn',width:120,renderer:'returnSalesman'},
+				{text:'实名',dataIndex:'verify',width:60,align:'center',renderer:'returnYesNo'}
+			],
+			features:[{ftype:'grouping'}],
+			//features:[{ftype:'groupingsummary'},{ftype:'summary',dock:'bottom'}],
+			listeners:{
+				itemdblclick:'onAccountConfirmClick'
+			}
+		},
+		{xtype:'grid',title:'已确认',flex:.5,margin:'0 0 0 1',
+			reference:'gridChange',
+			store:{
+				type:'account.manager',
+				autoLoad:true,
+				grouper:{groupFn:function(record){return Ext.Date.format(record.data.confirm_time,'Y-m-d')},property:'confirm_time',direction:'DESC'},		
+				proxy:{extraParams:{confirm:1,tested:1}}
+			},
+			dockedItems:[
+				{dock:'top',xtype:'toolbar',items:[
+					{xtype:'searchbar',
+						fields:[
+							{emptyText:'日期从',xtype:'startdatefield',name:'startdate'},
+							{emptyText:'日期至',xtype:'enddatefield',name:'enddate'},
+							{emptyText:'销售...',xtype:'comboCompanyStaff',root:103,name:'salesmanid'},
+							{emptyText:'关键字...',xtype:'textfield',name:'query',width:140}
+						]
+					},
+					'->',
+					{xtype:'refreshbutton'}
+				]},
+				{dock:'bottom',xtype:'pagingbar'}
+			],
+			columns:[
+				{xtype:'rownumberer'},
+				{text:'确认日期',dataIndex:'confirm_time',xtype:'datecolumn',format:'Y-m-d'},
+				{text:'账号',dataIndex:'login',width:200,renderer:'returnLogin',flex:1},
+				{text:'代理',dataIndex:'agent',width:140,renderer:'returnAgentAccount'},
+				{text:'手机',dataIndex:'mobile',width:120},
+				{text:'邮箱',dataIndex:'email',width:200},
+				//{text:'证件',xtype:'templatecolumn',dataIndex:'identity_cardno',tpl:'{identity_country} {identity_cardno}<r><s>{same_identity_count}</s></r>',width:200},
+				{text:'销售',dataIndex:'salesman_namecn',width:120,renderer:'returnSalesman'},
+				{text:'实名',dataIndex:'verify',width:60,align:'center',renderer:'returnYesNo'}
+			],
+			features:[{ftype:'grouping'}]
+		}		
+	]
+});

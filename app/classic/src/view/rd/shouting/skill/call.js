@@ -1,0 +1,48 @@
+﻿Ext.define('APP.view.rd.shouting.skill.call',{
+    extend:'Ext.grid.Panel',
+    controller:'rd.shouting.skill',
+	store:{
+		autoLoad:true,
+		type:'rdShoutingSkillCall'
+	},
+	dockedItems:[
+		{dock:'top',xtype:'toolbar',items:[
+			{xtype:'searchbar',
+				fields:[
+					{emptyText:'日期从',xtype:'startdatefield',name:'startdate'},
+					{emptyText:'日期至',xtype:'enddatefield',name:'enddate'},
+					{emptyText:'关键字...',xtype:'textfield',name:'query',width:160}
+				]
+			},
+			'->',
+			{iconCls:'f-mt mt-creat',text:'新增',handler:'onCallCreateClick'},'-',
+			{xtype:'refreshbutton'}
+		]},
+		{dock:'bottom',xtype:'pagingbar'}
+	],
+	columns:[
+		{xtype:'rownumberer'},
+		{text:'创建时间',dataIndex:'creattime',xtype:'datecolumn',width:80,format:'Y-m-d',hidden:true},
+		{text:'日期',dataIndex:'date',width:80},
+		{text:'商品',dataIndex:'symbol',minWidth:120,flex:1},
+		{text:'喊单信息',columns:[
+			{text:'周期',dataIndex:'cycle',width:60},
+			{text:'方向',dataIndex:'cmd',align:'center',width:60,renderer:'returnCallCmd'},
+			{text:'进场点位',dataIndex:'entry_price',align:'right',width:80},
+			{text:'止损',dataIndex:'sl',align:'right',width:80},
+			{text:'止盈',dataIndex:'tp',align:'right',width:80},
+			{text:'技术点评',dataIndex:'explain',width:300,renderer:'returnMore'},
+			{text:'图片地址',dataIndex:'image',width:300,hidden:true},
+			{text:'发布人',dataIndex:'operator',width:80},
+			{text:'显示',dataIndex:'locked',align:'center',width:60,renderer:'returnYesNo'}
+		]},
+		{text:'喊单结果',columns:[
+			{text:'结果',dataIndex:'result',width:120,renderer:'returnCallResult'},
+			{text:'开仓',dataIndex:'open_price',width:200,renderer:'returnCallOpen'},
+			{text:'平仓',dataIndex:'close_price',width:200,renderer:'returnCallClose'},
+			{text:'盈亏点数',dataIndex:'profit_point',align:'right',width:80}
+		]},
+		{xtype:'actioncolumn',text:'修改',align:'center',width:80,tooltip:'修改',iconCls:'f-mt mt-action-update',handler:'onCallUpdateClick'}
+	],
+	features:[{ftype:'groupingsummary'},{ftype:'summary',dock:'bottom'}]
+});

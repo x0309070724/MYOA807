@@ -1,0 +1,34 @@
+﻿Ext.define('APP.view.ia.system.account.propertyForm',{
+    extend:'Ext.form.Panel',
+	xtype:'iaSystemAccountPropertyForm',
+    controller:'ia.system.account',
+	width:680,
+	viewModel:true,
+	items:[
+		{title:'账户属性',items:[
+			{columnWidth:1,items:[
+				{fieldLabel:'名称',xtype:'textfield',name:'name',allowBlank:false}
+			]},
+			{columnWidth:.5,items:[
+				{fieldLabel:'模式',xtype:'combo',name:'mode',reference:'mode',publishes:'value',
+					store:{
+						fields:['value','display'],
+						data:[
+							['',''],
+							[10000001,'信用赠金'],
+							[10000002,'赠金']
+						]
+					},
+					emptyText:'模式...',
+					valueField:'value',
+					displayField:'display',
+					forceSelection:true
+				}
+			]},
+			{columnWidth:.5,items:[
+				{fieldLabel:'值',xtype:'numberfield',name:'value',minValue:.1,bind:{disabled:'{!mode.value}'},allowBlank:false}
+			]},
+			{columnWidth:1,items:[{fieldLabel:'描述',xtype:'textarea',name:'explain',height:80}]}
+		]}
+	]
+});

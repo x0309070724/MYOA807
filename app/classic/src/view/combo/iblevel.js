@@ -1,0 +1,21 @@
+Ext.define('APP.view.combo.iblevel',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'comboIblevel',
+	store:Ext.create('Ext.data.Store',{
+		autoLoad:false,
+		fields:[{name:'id',type:'int'},{name:'name',type:'string'}]
+	}),
+	emptyText:'代理类型...',
+	width:120,
+	editable:true,
+	name:'iblevel',
+	valueField:'id',
+	displayField:'name',
+	forceSelection:true,
+	initComponent:function(){
+		this.callParent();
+		var combo=this,
+			data=APP.app.getAppData('crm/iblevels');
+		combo.getStore().setData(data);
+	}
+});

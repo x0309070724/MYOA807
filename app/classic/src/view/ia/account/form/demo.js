@@ -1,0 +1,30 @@
+﻿Ext.define('APP.view.ia.account.form.demo',{
+    extend:'Ext.form.Panel',
+	xtype:'iaAccountFormDemo',
+	width:680,
+	viewModel:true,
+	items:[
+		{title:'用户资料',items:[
+			{columnWidth:.5,items:[
+				{fieldLabel:'中文姓名',xtype:'textfield',name:'namecn',allowBlank:false},
+				{fieldLabel:'手机',xtype:'textfield',name:'mobile',vtype:'mobile'}
+			]},
+			{columnWidth:.5,items:[
+				{fieldLabel:'英文姓名',xtype:'textfield',name:'name',allowBlank:false},
+				{fieldLabel:'Email',xtype:'textfield',vtype:'email',name:'email'}
+			]}
+		]},
+		{title:'账户信息',items:[
+			{columnWidth:.5,items:[
+				{fieldLabel:'账号',xtype:'numberfield',name:'login',vtype:'login',allowBlank:false},
+				{fieldLabel:'组',xtype:'textfield',name:'group',readOnly:true}
+			]},
+			{columnWidth:.5,items:[
+				{fieldLabel:'模拟资金',xtype:'numberfield',name:'amount',allowBlank:false},
+				{fieldLabel:'杠杆',xtype:'comboAccountLeverage',name:'leverage',allowBlank:false}
+			]},
+			{columnWidth:1,items:[{fieldLabel:'注释',xtype:'textarea',name:'mt4_comment',height:50}]},
+			{columnWidth:1,items:[{xtype:'noticefield'}]}
+		]}
+	]
+});

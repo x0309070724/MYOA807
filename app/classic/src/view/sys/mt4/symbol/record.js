@@ -1,0 +1,42 @@
+﻿Ext.define('APP.view.sys.mt4.symbol.record',{
+    extend:'Ext.grid.Panel',
+    controller:'sys.mt4',
+	store:{
+		type:'sysMt4Symbol',
+		autoLoad:true
+	},
+	dockedItems:[
+		{dock:'top',xtype:'toolbar',items:[
+			{xtype:'searchbar',
+				fields:[
+					{emptyText:'关键字...',xtype:'textfield',name:'query',width:140}
+				]
+			},
+			'->',
+			{xtype:'refreshbutton'}
+		]}
+	],
+	columns:[
+		{xtype:'rownumberer',width:40},
+		{text:'count',dataIndex:'count',hidden:true},
+		{text:'交易品种',dataIndex:'symbol',minWidth:100,flex:1},
+		{text:'交易类型',dataIndex:'type',width:100},
+		//{text:'分组',xtype:'templatecolumn',dataIndex:'group',tpl:'{group_name}',width:100},
+		{text:'合约单位',dataIndex:'currency',width:80},
+		{text:'合约大小',xtype:'templatecolumn',dataIndex:'contract_size',tpl:'{contract_size:stringInteger}',align:'right',minWidth:100},
+		{text:'报价单位',xtype:'templatecolumn',dataIndex:'point',tpl:'{point}<r>{digits} 位小数</r>',minWidth:160},
+		{text:'交易模式',dataIndex:'exemode',width:80,renderer:'returnSymbolExemode'},
+		{text:'交易许可',dataIndex:'trade',width:80,renderer:'returnSymbolTrade'},
+		{text:'保证金货币',dataIndex:'margin_currency',width:80},
+		//{text:'背景颜色',dataIndex:'background_color',width:100},
+		//{text:'过滤器',dataIndex:'filter',width:70},
+		//{text:'点差',dataIndex:'spread',width:70,align:'right'},
+		{text:'利息',dataIndex:'swap_enable',width:70,align:'right'},
+		{text:'类型',dataIndex:'swap_type',width:70,align:'right'},
+		{text:'买入利息',dataIndex:'swap_long',width:100,align:'right'},
+		{text:'卖出利息',dataIndex:'swap_short',width:100,align:'right'},
+		{text:'3日利息',dataIndex:'swap_rollover3days',width:70,align:'right'},
+		{text:'描述',dataIndex:'description',minWidth:160,flex:1}
+	],
+	features:[{ftype:'grouping'}]
+});

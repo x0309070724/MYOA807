@@ -1,0 +1,82 @@
+﻿Ext.define('APP.view.sd.mgr.res.allot.record',{
+    extend:'Ext.Panel',
+    controller:'sd.mgr.res',
+	padding:1,
+	layout:{type:'hbox',align:'stretch'},
+	items:[
+		{xtype:'grid',title:'分配记录',width:680,
+			reference:'gridTotal',
+			store:{
+				autoLoad:true,
+				type:'resources.allot.total',
+				proxy:{
+					extraParams:{type:1}
+				}	
+			},
+			dockedItems:[
+				{dock:'top',xtype:'toolbar',items:[
+					{xtype:'searchbar',
+						fields:[
+							{xtype:'segmentedfield',segmented:{
+								name:'idx',defaults:{minWidth:60},
+								items:[
+									{text:'员工',value:'staff',pressed:true},
+									{text:'团队',value:'team'}
+								]
+							}},
+							{emptyText:'月份',xtype:'monthfield',name:'month'},
+							{emptyText:'团队...',xtype:'comboCompanyTeam',root:103,name:'teamid'},
+							{emptyText:'销售...',xtype:'comboCompanyStaff',root:103,name:'staffid'}
+						]
+					},
+					'->',
+					{xtype:'refreshbutton'}
+				]},
+				{dock:'bottom',xtype:'pagingbar'}
+			],
+			columns:[
+				{xtype:'rownumberer'},
+				//{text:'月份',dataIndex:'date',width:80},
+				{text:'日期',dataIndex:'date',width:80},
+				{text:'分配予',xtype:'templatecolumn',dataIndex:'teamid',tpl:'{staff_namecn} <s>{staff_name}</s><r>{team_name}</r>',minWidth:160,flex:1,summaryType:'count'},
+				{text:'A',dataIndex:'count_a',width:80,align:'right',renderer:'returnInt',summaryType:'sum',summaryRenderer:'returnInt'},
+				{text:'B',dataIndex:'count_b',width:80,align:'right',renderer:'returnInt',summaryType:'sum',summaryRenderer:'returnInt'},
+				{text:'C',dataIndex:'count_c',width:80,align:'right',renderer:'returnInt',summaryType:'sum',summaryRenderer:'returnInt'},
+				{text:'D',dataIndex:'count_d',width:80,align:'right',renderer:'returnInt',summaryType:'sum',summaryRenderer:'returnInt'},
+				{text:'总量',dataIndex:'count',width:100,tdCls:'x-ui-active x-ui-text-blue',align:'right',renderer:'returnInt',summaryType:'sum',summaryRenderer:'returnInt'}
+			],
+			viewConfig:{enableTextSelection:false},
+			features:[{ftype:'groupingsummary'},{ftype:'summary',dock:'bottom'}],
+			listeners:{
+				selectionchange:'onAllotTotalChange'
+			}
+	   	},
+		{xtype:'grid',title:'电资明细',flex:1,margin:'0 0 0 1',
+			reference:'gridDetail',
+			bind:{title:'电资明细：{gridTotal.selection.date} {gridTotal.selection.staff_namecn} {gridTotal.selection.team_name}'},
+			store:{
+				type:'resources.allot',
+				autoLoad:false,
+				paseSize:false
+			},
+			dockedItems:[
+				{dock:'top',xtype:'toolbar',items:[
+					'->',
+					{xtype:'refreshbutton'}
+				]},
+				{dock:'bottom',xtype:'pagingbar'}
+			],
+			columns:[
+				{xtype:'rownumberer'},
+				{text:'电资',dataIndex:'recycling_staff_count',renderer:'returnResMobile',minWidth:180,flex:1},
+				{text:'区域',xtype:'templatecolumn',dataIndex:'province',tpl:'{province} {city}',width:150},
+				{text:'分级',dataIndex:'level',width:100,renderer:'returnResLevel'},
+				{text:'活跃日期',dataIndex:'lastdate',width:100},
+				{text:'历史跟进',dataIndex:'track_day',width:100,renderer:'returnResTrackHistory'},
+				{text:'通话时长',dataIndex:'call_duration',width:120,renderer:'returnResCall'},
+				{text:'最后通话',dataIndex:'call_lasttime',xtype:'datecolumn',width:100},
+				{text:'最新状态',dataIndex:'track_time',width:120,renderer:'returnResTrackTime'}
+			]
+		}		
+	]
+});

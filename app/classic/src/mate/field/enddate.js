@@ -1,0 +1,9 @@
+Ext.define('APP.mate.field.enddate',{
+	extend:'Ext.form.field.Date',
+	alias:'widget.enddatefield',
+	format:'Y-m-d',
+	vtype:'daterange',
+	name:'enddate',
+	itemId:'enddate',
+	startDateField:'startdate'
+});

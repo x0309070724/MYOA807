@@ -1,0 +1,68 @@
+﻿Ext.define('APP.view.rd.shouting.qun.member',{
+    extend:'Ext.grid.Panel',
+    controller:'rd.shouting.qun',
+	store:{
+		type:'rdShoutingQunMember',
+		autoLoad:true
+	},
+	dockedItems:[
+		{dock:'top',xtype:'toolbar',items:[
+			{xtype:'searchbar',
+				fields:[
+					{xtype:'segmentedfield',segmented:{
+						name:'type',defaults:{minWidth:80},
+						items:[
+							{text:'博弈论',value:1},
+							{text:'喊单群',value:2,pressed:true},
+							{text:'全部',value:''} 
+						]
+					}},
+					{xtype:'segmentedfield',segmented:{
+						name:'invalid',reference:'invalid',
+						items:[
+							{tooltip:'已退群',iconCls:'f-mt mt-no',value:1},
+							{tooltip:'正常',iconCls:'f-mt mt-yes',value:0,pressed:true},
+							{tooltip:'全部',iconCls:'f-mt mt-icon',value:''}
+						]
+					}},
+					{emptyText:'QQ',xtype:'numberfield',name:'uin',width:100},
+					{emptyText:'群号',xtype:'numberfield',name:'gc',width:100},
+					{emptyText:'关键字...',xtype:'textfield',name:'query',width:160}
+				]
+			},
+			'->',
+			{xtype:'refreshbutton'}
+		]},
+		{dock:'bottom',xtype:'pagingbar'}
+	],
+	columns:[
+		{xtype:'rownumberer'},
+		{text:'成员',dataIndex:'nick',width:140,flex:1,renderer:'returnQqName'},
+		{text:'成员信息',columns:[
+			{text:'QQ号',dataIndex:'uin',xtype:'templatecolumn',tdCls:'x-ui-active',width:120,tpl:'<a href="{uin:qqHref}"><img src="{uin:qqFace}"/> {uin}</a>'},
+			{text:'群名片',dataIndex:'card',width:100},
+			{text:'性别',dataIndex:'g',width:60,renderer:'returnSex'},
+			{text:'Q龄',dataIndex:'qage',width:60,align:'right'},
+			{text:'入群日期',xtype:'datecolumn',dataIndex:'join_time',width:100,format:'Y-m-d'},
+			{text:'退群日期',xtype:'datecolumn',dataIndex:'retreat_time',width:100,format:'Y-m-d',hidden:true,bind:{hidden:'{!invalid.value}'}},
+			{text:'最后发言',xtype:'datecolumn',dataIndex:'last_speak_time',width:100,format:'Y-m-d'}
+		]},
+		{text:'所属群信息',columns:[
+			{text:'群号',dataIndex:'gc',xtype:'templatecolumn',tdCls:'x-ui-active',width:120,tpl:'<a href="{gc:qunHref}"><img src="{gc:qunFace}"/> {gc}</a>'},
+			{text:'群名称',dataIndex:'gn',width:140}
+		]},
+		{text:'账户信息',columns:[
+			{text:'账户数',dataIndex:'login_count',width:60,align:'right',renderer:'returnInt',summaryType:'sum',summaryRenderer:'returnInt'},
+			{text:'交易账号',dataIndex:'login',width:140,renderer:'returnTradeLogin'},
+			{text:'上级代理',dataIndex:'agent',width:140,renderer:'returnAgentAccount'},
+			{text:'昨日净值',dataIndex:'prevequity',tdCls:'x-ui-text-red',align:'right',renderer:'returnShowMoney',summaryType:'sum',summaryRenderer:'returnShowMoney'},
+			{text:'当前余额',dataIndex:'balance',tdCls:'x-ui-text-green',align:'right',renderer:'returnShowMoney',summaryType:'sum',summaryRenderer:'returnShowMoney'},
+			{text:'活跃日期',xtype:'datecolumn',dataIndex:'lastdate',width:90,format:'Y-m-d'},
+			{text:'销售',dataIndex:'salesman_namecn',width:110,renderer:'returnSalesman'}
+		]}
+	],
+	features:[{ftype:'grouping'}],
+	listeners:{
+		itemdblclick:'onQQDetailedClick'
+	}
+});

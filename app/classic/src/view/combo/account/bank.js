@@ -1,0 +1,31 @@
+Ext.define('APP.view.combo.account.bank',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'comboAccountBank',
+	store:{
+		type:'cross',
+		autoLoad:false,
+		fields:[
+			{name:'id',type:'int'},
+			{name:'login',type:'int'},
+			{name:'currency',type:'string'},
+			{name:'code',type:'string'},
+			{name:'name',type:'string'},
+			{name:'branches',type:'string'},
+			{name:'swiftcode',type:'string'},
+			{name:'address',type:'string'},
+			{name:'username',type:'string'},
+			{name:'account',type:'string'},
+			{name:'bank_name',type:'string',convert:function(v,record){return record.data.name;}}
+		],
+		proxy:{
+			url:Boot.appUrl('/sd/account/getAccountBank.do')
+		}
+	},
+	emptyText:'银行...',
+	width:120,
+	editable:true,
+	forceSelection:false,
+	name:'bank_name',
+	valueField:'bank_name',
+	displayField:'bank_name'	
+});

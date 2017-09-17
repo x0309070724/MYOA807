@@ -1,0 +1,21 @@
+Ext.define('APP.mate.field.passwordSafe',{
+	extend:'APP.mate.field.password',
+	alias:[
+		'widget.passwordsafe',
+		'widget.passwordsafefield'
+	],
+	name:'password_safe',
+	enforceMaxLength:true,
+	enableKeyEvents:true,
+	minLength:6,
+	maxLength:6,
+	listeners:{
+		change:function(field){
+			var me=this,
+				value=field.getValue().replace(/[^\d]/g,'');
+				if(field.getValue()!=value){
+					field.setValue(value);
+				}
+		}
+	}
+});

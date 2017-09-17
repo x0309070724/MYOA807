@@ -1,0 +1,73 @@
+﻿Ext.define('APP.view.sys.mt4.symbol.group',{
+    //extend:'Ext.Panel',
+	extend:'Ext.Container',
+	xtype:'iaSystemMt4SymbolGroup',
+    controller:'sys.mt4',
+	//layout:{type:'border',align:'stretch',padding:3},
+	//defaults:{split:false,border:true},
+    layout:{type:'hbox',align:'stretch'},
+	//border:false,	
+	defaults:{border:true,flex:1,
+		useArrows:false,
+		rootVisible:false
+		//singleExpand:true,
+		//frame:true,
+	},
+	initComponent:function(){
+        var group=this.id+'-ddgroup';
+        Ext.apply(this,{
+            items:[
+				{title:'交易品种',xtype:'treepanel',
+					reference:'treeSymbolByType',
+					store:{type:'mt4SymbolTypeTree'},
+					margin:'0 3 0 0',
+					tbar:[
+						'->',
+						{xtype:'refreshbutton'}
+					],
+				   viewConfig:{
+						plugins:{
+							ptype:'treeviewdragdrop',
+							ddGroup:group,
+							appendOnly:true,
+							sortOnDrop:true,
+							containerScroll:true,
+							listeners:{ 
+								drop:function(node,data,overModel,dropPosition,eOpts){
+									console.log(node,data,overModel,dropPosition)
+								}
+							}
+						}
+					}
+				},
+				{title:'自定义分组',xtype:'treepanel',
+					reference:'treeSymbolByType',
+					store:{type:'mt4SymbolGroupTree'},
+					//store:{type:'tree',root:{id:111,text:'AAAA'}},
+					tbar:[
+						'->',
+						{iconCls:'f-mt mt-creat',text:'新增',handler:'onSymbolGroupCreatClick',postRoles:{action:'creat'}},'-',
+						{xtype:'refreshbutton'}
+					],
+					viewConfig:{
+						plugins:{
+							ptype:'treeviewdragdrop',
+							ddGroup:group,
+							appendOnly:true,
+							sortOnDrop:true,
+							containerScroll:true,
+							allowContainerDrops:true,
+							listeners:{ 
+								drop:function(node,data,overModel,dropPosition,eOpts){
+									console.log(node,data,overModel,dropPosition)
+								}
+							}
+					   }
+					}
+				}
+			]
+        });
+        this.callParent();
+    }
+
+});

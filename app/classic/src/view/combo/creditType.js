@@ -1,0 +1,16 @@
+Ext.define('APP.view.combo.creditType',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'comboCreditType',
+	store:{
+		fields:['value','display'],
+		data:[
+			[1,'借信用'],
+			[2,'还信用']
+		]
+	},
+	emptyText:'信用类型...',
+	width:120,
+	name:'direction',
+	valueField:'value',
+	displayField:'display'
+});

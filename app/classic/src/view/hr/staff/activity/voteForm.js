@@ -1,0 +1,11 @@
+﻿Ext.define('APP.view.hr.staff.activity.voteForm',{
+	extend:'Ext.form.Panel',
+	xtype:'hrStaffActivityVoteForm',
+	layout:'accordion',
+	border:'solid',
+	width:750,
+	items:[
+		{xtype:'hrStaffActivityVoteActiveForm'},
+		{xtype:'hrStaffActivityVoteAccountForm'}
+	]
+});

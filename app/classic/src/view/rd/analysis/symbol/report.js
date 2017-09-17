@@ -1,0 +1,47 @@
+﻿Ext.define('APP.view.rd.analysis.symbol.report',{
+    extend:'Ext.grid.Panel',
+    controller:'rd',
+	store:{
+		type:'analysis.trade.statistics',
+		autoLoad:true,
+		sorters:[{property:'trade_clear',direction:'ASC'}],
+		super:true,
+		proxy:{
+			extraParams:{
+				menu:'symbol',
+				datepart:'month',
+				startdate:Ext.Date.format(new Date(),'Y-m'),
+				enddate:Ext.Date.format(new Date(),'Y-m')
+			}
+		}
+	},
+	dockedItems:[
+		{dock:'top',xtype:'toolbar',items:[
+			{xtype:'searchbar',
+				fields:[
+					{xtype:'datepartfield',name:'datepart',value:'month',allowBlank:false}
+				]
+			},
+			'->',
+			{xtype:'refreshbutton'}
+		]}
+	],
+	columns:[
+		{xtype:'rownumberer'},
+		{text:'商品',xtype:'templatecolumn',dataIndex:'objects',minWidth:150,tpl:'{objects}<r>{objects_tip}</r>',flex:1,summaryType:'count'},
+		{text:'代理佣金',defaults:{align:'right',width:180,summaryType:'sum',renderer:'returnShowMoney',summaryRenderer:'returnShowMoney'},columns:[
+			{text:'交易量',dataIndex:'trade_volume',tdCls:'x-ui-text-bold',renderer:'returnNumber',summaryRenderer:'returnNumber'},
+			{text:'内佣',dataIndex:'trade_commission_internal',tdCls:'x-ui-text-green'},
+			{text:'外佣',dataIndex:'trade_commission_foreign',tdCls:'x-ui-text-red'},
+			{text:'小计',dataIndex:'trade_commission_agent',tdCls:'x-ui-active x-ui-text-blue'}
+		]},
+		{text:'交易盈亏',defaults:{align:'right',width:180,renderer:'returnShowMoney',summaryType:'sum',summaryRenderer:'returnShowMoney'},columns:[
+			{text:'利息',dataIndex:'trade_storage'},
+			{text:'税金',dataIndex:'trade_taxes',hidden:true},
+			{text:'交易盈亏',dataIndex:'trade_profit'},
+			{text:'净盈亏',dataIndex:'trade_clear',tdCls:'x-ui-active x-ui-text-blue'},
+			{text:'均利/手',dataIndex:'trade_clear_average',tdCls:'x-ui-text-green'}
+		]}
+	],
+	features:[{ftype:'summary',dock:'bottom'}]
+});

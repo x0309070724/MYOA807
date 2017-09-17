@@ -1,0 +1,22 @@
+.DS_Store
+node_modules/
+dist/
+build/
+SDK/
+OSS/
+log/
+.well-known/
+_/
+index/
+page/
+wechat/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

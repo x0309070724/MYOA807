@@ -1,0 +1,27 @@
+Ext.define('APP.view.sys.sms.aisle.accountForm',{
+    extend:'Ext.form.Panel',
+	xtype:'sysSmsAisleAccountForm',
+    controller:'sys.sms',
+	width:600,
+	viewModel:true,
+	items:[
+		{title:'商户信息',items:[
+			{columnWidth:.49,items:[
+				{fieldLabel:'名字',xtype:'textfield',name:'name',allowBlank:false},
+				{fieldLabel:'最大长度',xtype:'textfield',name:'textlen',allowBlank:false},
+				{fieldLabel:'内容类型',xtype:'textfield',name:'paramContentName',allowBlank:false}
+			]},
+			{columnWidth:.5,items:[
+				{fieldLabel:'编码',xtype:'textfield',name:'charset',allowBlank:false},
+				{fieldLabel:'方法',xtype:'textfield',name:'method',allowBlank:false},
+				{fieldLabel:'对象类型',xtype:'textfield',name:'paramMobileName',allowBlank:false}
+			]},
+			{columnWidth:.99,items:[
+				{fieldLabel:'请求地址',xtype:'textfield',name:'url',allowBlank:false},
+				{xtype:'fieldcontainer',fieldLabel:'控制项',items:[
+					{xtype:'checkbox',boxLabel:'锁定',name:'enable'}
+				]}
+			]}
+		]}
+	]
+});

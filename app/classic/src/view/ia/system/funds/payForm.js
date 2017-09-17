@@ -1,0 +1,33 @@
+﻿Ext.define('APP.view.ia.system.funds.payForm',{
+    extend:'Ext.form.Panel',
+	xtype:'iaSystemFundsSettingsPayForm',
+    controller:'ia.system.funds',
+	width:600,
+	viewModel:true,
+	items:[
+		{title:'商户信息',items:[
+			{columnWidth:1,items:[
+				{xtype:'radiogroup',action:'API',columns:4,fieldLabel:'支付通道',bind:{readOnly:'{isUpdate}'},
+					items:[
+						{boxLabel:'THIRDPAY',name:'API',inputValue:1,checked:true},
+						{boxLabel:'PAYMATE',name:'API',inputValue:2}
+					]
+				}
+			]},
+			{columnWidth:.5,items:[
+				{fieldLabel:'商户号',xtype:'textfield',name:'merchantno',allowBlank:false,bind:{readOnly:'{isUpdate}'}}
+			]},
+			{columnWidth:.5,items:[
+				{fieldLabel:'别名',xtype:'textfield',name:'aliases',allowBlank:false}
+			]},
+			{columnWidth:1,items:[
+				{fieldLabel:'秘钥',xtype:'textfield',name:'merchantkey',allowBlank:false,bind:{disabled:'{isUpdate}',hidden:'{isUpdate}'}},
+				{fieldLabel:'注释',xtype:'textarea',name:'explain',height:60},
+				{xtype:'fieldcontainer',fieldLabel:'控制项',items:[
+					{xtype:'checkbox',boxLabel:'锁定',name:'locked',bind:{disabled:'{!isUpdate}',hidden:'{!isUpdate}'}},
+					{xtype:'checkbox',boxLabel:'设为默认',name:'default'}
+				]}
+			]}
+		]}
+	]
+});

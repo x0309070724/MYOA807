@@ -1,0 +1,37 @@
+﻿Ext.define('APP.view.rd.trade.positions.group',{
+    extend:'Ext.grid.Panel',
+	alias:'widget.rd.trade.positions.group',
+	userCls:'x-ui-disabled-dirty',
+	minWidth:400,
+	forceFit:true,
+	features:[{ftype:'summary',dock:'bottom'}],
+	initComponent:function(){
+		var me=this,
+			parameter=this.parameter||{name:'账户',field:'login'};
+		Ext.apply(this,{
+			parameter:parameter,
+			dockedItems:[
+				{dock:'top',xtype:'toolbar',items:[
+					{xtype:'textfield',name:'objects',width:200,keyMap:{ENTER:'onMateSearchRecord'}}
+				]}
+			],
+			columns:[
+				{xtype:'rownumberer',maxWidth:40},
+				{text:parameter.name,dataIndex:'objects',minWidth:100,summaryType:'count'},
+				{text:'BUY',dataIndex:'buy_volume',width:80,align:'right',tdCls:'x-ui-text-green',renderer:'returnNumber',summaryType:'sum',summaryRenderer:'returnNumber'},
+				{text:'SELL',dataIndex:'sell_volume',width:80,align:'right',tdCls:'x-ui-text-red',renderer:'returnNumber',summaryType:'sum',summaryRenderer:'returnNumber'},
+				{text:'交易量',dataIndex:'market_volume',width:80,align:'right',tdCls:'x-ui-text-blue',renderer:'returnNumber',summaryType:'sum',summaryRenderer:'returnNumber',hidden:parameter.field!='login'},
+				{text:'净头寸',dataIndex:'position_volume',width:80,align:'right',tdCls:'x-ui-text-blue',renderer:'returnNumber',summaryType:'sum',summaryRenderer:'returnNumber',hidden:parameter.field!='symbol'},
+				{text:'手续费',dataIndex:'commission',width:80,align:'right',renderer:'returnShowMoney',summaryType:'sum',summaryRenderer:'returnShowMoney',hidden:true},
+				{text:'利息',dataIndex:'storage',width:80,align:'right',renderer:'returnShowMoney',summaryType:'sum',summaryRenderer:'returnShowMoney',hidden:true},
+				//{text:'税金',dataIndex:'taxes',width:80,align:'right',renderer:'returnShowMoney',summaryType:'sum',summaryRenderer:'returnShowMoney'},
+				{text:'浮亏',dataIndex:'profit',width:100,align:'right',renderer:'returnColorMoney',summaryType:'sum',summaryRenderer:'returnColorMoney'}
+				//{text:'净浮亏',dataIndex:'clear',width:100,align:'right',renderer:'returnColorMoney',summaryType:'sum',summaryRenderer:'returnColorMoney',hidden:true}
+			]
+		});
+		this.callParent();
+		//{text:'交易量',dataIndex:'market_volume',width:80,align:'right',tdCls:'x-ui-text-blue',renderer:'returnNumber',summaryType:'sum',summaryRenderer:'returnNumber',bind:{hidden:'{parameter.field!="login"}'}},
+		//{text:'净头寸',dataIndex:'position_volume',width:80,align:'right',tdCls:'x-ui-text-blue',renderer:'returnNumber',summaryType:'sum',summaryRenderer:'returnNumber',bind:{hidden:'{parameter.field!="symbol"}'}},
+		//me.setViewModel({data:{parameter:parameter}});
+	}
+});

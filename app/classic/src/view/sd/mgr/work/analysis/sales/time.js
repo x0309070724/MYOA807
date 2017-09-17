@@ -1,0 +1,28 @@
+﻿Ext.define('APP.view.sd.mgr.work.analysis.sales.time',{
+    extend:'Ext.Panel',
+	layout:'fit',
+    controller:'baseController',
+	defaults:{border:false},
+	dockedItems:[
+		{dock:'top',xtype:'toolbar',items:[
+			{xtype:'segmentedbutton',name:'menu',defaults:{minWidth:100},
+				items:[
+					{text:'报表',widget:'sd.mgr.work.analysis.sales.timeGrid',pressed:true},
+					{text:'分析',widget:'sd.mgr.work.analysis.sales.timeChart'}
+				],
+				listeners:{ 
+					change:'onMateChangeView'
+				}
+			},'-',
+			{xtype:'searchbar',
+				fields:[
+					{xtype:'datepartfield',name:'datepart',value:'month',allowBlank:false},
+					{emptyText:'团队...',xtype:'comboCompanyTeam',root:103,name:'teamid'},
+					{emptyText:'销售...',xtype:'comboCompanyStaff',root:103,name:'staffid'}
+				]
+			},
+			'->',
+			{xtype:'refreshbutton'}
+		]}
+	]
+});

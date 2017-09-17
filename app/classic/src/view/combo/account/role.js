@@ -1,0 +1,19 @@
+Ext.define('APP.view.combo.account.role',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'comboAccountRole',
+	store:{
+		fields:[{name:'id',type:'int'},{name:'name',type:'string'}]
+	},
+	emptyText:'权限...',
+	name:'roleid',
+	valueField:'id',
+	displayField:'name',
+	forceSelection:true,
+	width:120,
+	initComponent:function(){
+		this.callParent();
+		var combo=this,
+			data=APP.app.getAppData('crm/accountRole');
+		combo.getStore().setData(data);
+	}
+});  

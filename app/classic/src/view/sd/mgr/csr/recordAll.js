@@ -1,0 +1,49 @@
+﻿Ext.define('APP.view.sd.mgr.csr.recordAll',{
+    extend:'Ext.grid.Panel',
+	store:{
+		type:'account.manager',
+		autoLoad:true,
+		grouper:{groupFn:function(record){return Ext.Date.format(record.data.regdate,'Y-m-d')},property:'regdate',direction:'DESC'},
+		proxy:{extraParams:{}}
+	},
+	columns:[
+		{xtype:'rownumberer'},
+		{text:'账号',dataIndex:'login',minWidth:140,flex:1,renderer:'returnLogin',summaryType:'count'},
+		{text:'账户信息',defaults:{sortable:true,width:80},columns:[
+			{text:'开户日期',dataIndex:'regdate',xtype:'datecolumn',format:'Y-m-d'},
+			{text:'时间',dataIndex:'regdate',xtype:'datecolumn',format:'H:i A',width:80},
+			{text:'账户性质',dataIndex:'property_name',width:80},
+			{text:'代理',dataIndex:'agent',width:130,renderer:'returnAgentAccount'},
+			//{text:'手机',dataIndex:'mobile',width:100},
+			//{text:'邮箱',dataIndex:'email',width:180},
+			//{text:'QQ',dataIndex:'qq',align:'center',width:60,renderer:'returnQQ'},
+			{text:'销售',dataIndex:'salesman_namecn',width:100,renderer:'returnSalesman'},
+			//{text:'杠杆',dataIndex:'leverage',align:'center',renderer:'returnLeverage'},
+			{text:'状态',width:60,align:'center',renderer:'returnAccountState'}
+		]},
+		{text:'出入金',defaults:{sortable:true,width:120,summaryType:'sum',summaryRenderer:'returnShowMoney'},columns:[
+			{text:'入金',dataIndex:'funds_deposit',renderer:'returnTotalDeposit'},
+			{text:'出金',dataIndex:'funds_withdrawal',renderer:'returnTotalWithdrawal'},
+			{text:'净入金',dataIndex:'funds_net_deposit',renderer:'returnShowMoney',tdCls:'x-ui-active x-ui-text-blue',align:'right',width:100}
+		]},
+		{text:'历史交易',defaults:{sortable:true,width:100},columns:[
+			{text:'交易量',dataIndex:'trade_volume',width:80,align:'right',renderer:'returnNumber',summaryType:'sum',summaryRenderer:'returnNumber'},
+			{text:'内佣',dataIndex:'trade_commission_internal',tdCls:'x-ui-text-green'},
+			{text:'外佣',dataIndex:'trade_commission_foreign',tdCls:'x-ui-text-red'},
+			{text:'佣金',dataIndex:'trade_commission',tdCls:'x-ui-text-green'},
+			{text:'首次入金',dataIndex:'funds_deposit_firstdate',width:88},
+			{text:'活跃日期',xtype:'datecolumn',dataIndex:'lastdate',format:'Y-m-d',width:88}
+		]},
+		{text:'账户资产',defaults:{sortable:true,width:110,align:'right',renderer:'returnShowMoney',summaryType:'sum',summaryRenderer:'returnShowMoney'},columns:[
+			{text:'信用',dataIndex:'credit',hidden:true},
+			{text:'余额',dataIndex:'balance',tdCls:'x-ui-text-green'},
+			{text:'已用',dataIndex:'margin',hidden:true},
+			{text:'可用',dataIndex:'margin_free',tdCls:'x-ui-text-green',hidden:true},
+			{text:'净值',dataIndex:'equity',tdCls:'x-ui-text-red'}
+		]}
+	],
+	features:[{ftype:'groupingsummary'},{ftype:'summary',dock:'bottom'}],
+	listeners:{
+		itemdblclick:'onShowAccountDetail'
+	}
+});

@@ -1,0 +1,12 @@
+Ext.define('APP.store.hr.staff.changePost',{
+    extend:'APP.store.cross',
+	alias:'store.hrStaffChangePost',
+	fields:[
+		{name:'creattime',type:'date'}
+	],
+	sorters:[{property:'effectivedate',direction:'DESC'},{property:'id',direction:'DESC'}],
+	proxy:{
+		url:Boot.appUrl('/hr/staff/change/getPost.do'),
+		extraParams:{}
+	}
+});

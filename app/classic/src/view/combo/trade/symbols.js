@@ -1,0 +1,29 @@
+Ext.define('APP.view.combo.trade.symbols',{
+	extend:'Ext.form.field.Tag',
+	xtype:'comboTradeSymbols',
+	store:{
+		fields:[{name:'symbol',type:'string'}]
+	},
+	selectOnFocus:false,
+	filterPickList:true,
+	emptyText:'交易品种...',
+	name:'symbol',
+	valueField:'symbol',
+	displayField:'symbol',
+	forceSelection:false,
+	multiSelect:true,
+	initComponent:function(){
+		this.callParent();
+		if(window.PushService){
+			var combo=this,
+				store=combo.getStore();
+			PushService.ready(function(){
+				var records=PushService.getBuffer().getSymbols();
+				Ext.Array.each(records,function(record){
+					//console.log(record)
+					store.add({symbol:record.symbol});
+				});
+			});
+		}
+	}
+});

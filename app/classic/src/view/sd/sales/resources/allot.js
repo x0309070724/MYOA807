@@ -1,0 +1,69 @@
+﻿Ext.define('APP.view.sd.sales.resources.allot',{
+    extend:'Ext.Container',
+    controller:'sd.sales',
+	padding:1,
+	layout:{type:'hbox',align:'stretch'},
+	items:[
+		{xtype:'grid',title:'分配记录',width:320,
+			reference:'gridTotal',
+			store:{
+				autoLoad:true,
+				pageSize:false,
+				type:'sales.allot.total',
+				proxy:{
+					extraParams:{idx:'staff'}
+				}	
+			},
+			dockedItems:[
+				{dock:'top',xtype:'toolbar',items:[
+					{xtype:'searchbar',
+						fields:[
+							{emptyText:'月份',xtype:'monthfield',name:'month'}
+						]
+					},
+					'->',
+					{xtype:'refreshbutton'}
+				]}
+			],
+			columns:[
+				{xtype:'rownumberer'},
+				//{text:'月份',dataIndex:'date',width:80},
+				{text:'日期',dataIndex:'date',minWidth:80,flex:1,summaryType:'count'},
+				{text:'类型',dataIndex:'type',width:80,renderer:'returnAllotType'},
+				{text:'数量',dataIndex:'count',width:100,tdCls:'x-ui-active x-ui-text-blue',align:'right',renderer:'returnInt',summaryType:'sum',summaryRenderer:'returnInt'}
+			],
+			viewConfig:{enableTextSelection:false},
+			features:[{ftype:'summary',dock:'bottom'}],
+			listeners:{
+				selectionchange:'onAllotTotalChange'
+			}
+	   	},
+		{xtype:'grid',title:'电资明细',minWidth:600,flex:1,margin:'0 0 0 1',
+			reference:'gridDetail',
+			bind:{title:'电资明细：{gridTotal.selection.date}'},
+			store:{
+				type:'sales.allot',
+				autoLoad:false,
+				paseSize:false
+			},
+			dockedItems:[
+				{dock:'top',xtype:'toolbar',items:[
+					'->',
+					{xtype:'refreshbutton'}
+				]},
+				{dock:'bottom',xtype:'pagingbar'}
+			],
+			columns:[
+				{xtype:'rownumberer'},
+				{text:'电资',dataIndex:'recycling_staff_count',renderer:'returnResMobile',minWidth:180,flex:1},
+				{text:'区域',xtype:'templatecolumn',dataIndex:'province',tpl:'{province} {city}',width:150},
+				{text:'已跟进',dataIndex:'track_staff_day',width:88,renderer:'returnSalesResTrackHistory'},
+				{text:'通话时长',dataIndex:'call_duration',width:120,renderer:'returnResCall',flex:1},
+				{text:'最后通话',dataIndex:'call_lasttime',xtype:'datecolumn',width:100},
+				{text:'最新状态',dataIndex:'track_staff_time',width:100,renderer:'returnSalesResTrackTime'}
+			]
+		}		
+	]
+});
+
+	

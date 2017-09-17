@@ -1,0 +1,36 @@
+﻿Ext.define('APP.view.ia.system.global.notice',{
+    extend:'Ext.form.Panel',
+    controller:'ia.system.global',
+	frame:false,
+	width:880,
+	items:[
+		{xtype:'checkbox',boxLabel:'开启客户端公告',name:'enable',reference:'enableReference'},
+		{xtype:'panel',layout:'accordion',defaults:{xtype:'panel',layout:'anchor',bodyPadding:10},bind:{disabled:'{!enableReference.checked}'},items:[
+			{title:'简体编辑',defaults:{allowBlank:false},items:[
+				{emptyText:'公告标题',xtype:'textfield',name:'title_cn'},
+				{hideLabel:true,xtype:'htmleditor',margin:0,height:240,name:'content_cn'}
+			]},
+			{title:'繁体编辑',defaults:{allowBlank:true},fieldDefaults:{allowBlank:false},items:[
+				{emptyText:'公告标题',xtype:'textfield',name:'title_hk'},
+				{hideLabel:true,xtype:'htmleditor',margin:0,height:240,name:'content_hk'}
+			]},
+			{title:'英文编辑',defaults:{allowBlank:true},fieldDefaults:{allowBlank:false},items:[
+				{emptyText:'公告标题',xtype:'textfield',name:'title_en'},
+				{hideLabel:true,xtype:'htmleditor',margin:0,height:240,name:'content_en'}
+			]}
+		]}
+	],
+	mateParameters:{
+		url:Boot.appUrl('/system/settings/getNotice.do')
+	},
+	listeners:{afterrender:'onMateFormLoadData'},
+	buttons:['->',
+		{text:'保存信息',iconCls:'f-mt mt-button-submit',scale:'medium',
+			mateParameters:{
+				url:Boot.appUrl('/system/settings/updateNotice.do')
+			},
+			handler:'onMateFormSubmit'
+		},
+		{text:'取消操作',iconCls:'f-mt mt-button-cancel',scale:'medium',handler:'onMateWindowDestroy'}
+	]
+});

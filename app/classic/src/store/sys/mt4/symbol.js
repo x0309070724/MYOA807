@@ -1,0 +1,44 @@
+Ext.define('APP.store.sys.mt4.symbol',{
+    extend:'APP.store.cross',
+	alias:'store.sysMt4Symbol',
+	fields:[
+		{name:'symbol',type:'string'},
+		{name:'groupname',type:'string'}
+	],
+	sorters:[{property:'symbol',direction:'ASC'}],
+	pageSize:false,
+	groupField:'type',
+	groupDir:'ASC',
+	proxy:{
+		url:Boot.appUrl('/system/mt4/getSymbol.do')
+	},
+	listeners:{ 
+		load:function(store,records,successful,operation,eOpts){
+			if(successful){
+				var typeTemp={},
+					typeRoot={expanded:true,children:[]},
+					storeType=Ext.getStore('mt4SymbolTypeTree');
+				if(storeType){
+					store.sort('type');
+					store.each(function(record,i){
+						if(!typeTemp[record.data.type]){
+							typeTemp[record.data.type]={
+								id:record.data.type,
+								text:record.data.type_name,
+								//iconCls:'f-mt mt-tree-2',
+								children:[],
+								expanded:true
+							}
+							typeRoot.children.push(typeTemp[record.data.type]);
+						}
+						var data={leaf:true,iconCls:'f-mt mt-report',id:record.data.symbol,text:record.data.symbol}
+							typeTemp[record.data.type].children.push(data);
+					});
+					//Ext.apply(storeType,{root:typeRoot});
+					//storeType.load();
+					storeType.setRoot(typeRoot)
+				}
+			}
+		}
+	}
+});

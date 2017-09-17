@@ -1,0 +1,12 @@
+Ext.define('Override.chart.series.Bar3D',{
+    override:'Ext.chart.series.Bar3D',
+	config:{
+		style:{
+			opacity:.8,
+			saturationFactor:1.2,
+			brightnessFactor:1,
+			colorSpread:.68
+		},
+		highlight:{fillStyle:'#8e4402'}
+	}
+});

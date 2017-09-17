@@ -1,0 +1,23 @@
+Ext.define('APP.view.ia.system.mt4.timeForm',{
+	extend:'Ext.form.Panel',
+	xtype:'iaSystemMt4TimeForm',
+	width:480,
+	items:[
+		{title:'时区设置',items:[
+			{columnWidth:1,items:[
+				{fieldLabel:'所在时区',xtype:'textfield',name:'mt4_zone'}
+			]},
+			{columnWidth:.49,items:[
+				{fieldLabel:'开始时间',xtype:'startdatefield',name:'starttime'}
+			]},
+			{columnWidth:.5,items:[
+				{fieldLabel:'结束时间',xtype:'enddatefield',name:'endtime'}
+			]},
+			{columnWidth:1,items:[
+				{xtype:'fieldcontainer',fieldLabel:'启用',items:[
+					{xtype:'checkbox',boxLabel:'夏令时',name:'season'}
+				]}
+			]}
+		]}
+	]
+});

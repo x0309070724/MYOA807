@@ -1,0 +1,19 @@
+Ext.define('APP.mate.combo.track',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'comboTrack',
+	store:{
+		fields:['value','name'],
+		data:[
+			[0,'未跟进'],
+			[-100,'无效'],
+			[-1,'无意向'],
+			[1,'待跟进']
+		]
+	},
+	emptyText:'状态..',
+	width:100,
+	name:'track',
+	valueField:'value',
+	displayField:'name'
+});
+

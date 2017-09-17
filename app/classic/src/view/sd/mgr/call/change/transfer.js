@@ -1,0 +1,74 @@
+﻿Ext.define('APP.view.sd.mgr.call.change.transfer',{
+    extend:'Ext.Panel',
+    controller:'sd.call.change',
+	layout:{type:'border',align:'stretch',padding:3},
+	defaults:{split:false,border:true},
+	items:[
+		{xtype:'grid',region:'west',title:'已分配号码',width:680,
+			reference:'gridBase',
+			store:{
+				type:'call.mobile',
+				autoLoad:true,
+				pageSize:false,
+				sorters:[{property:'teamid',direction:'ASC'}]
+			},
+			dockedItems:[
+				{dock:'top',xtype:'toolbar',items:[
+					{xtype:'searchbar',
+						fields:[
+							{emptyText:'员工...',xtype:'comboCompanyStaff',name:'staffid'},
+							{emptyText:'关键字...',xtype:'textfield',name:'query',width:140}
+						]
+					},
+					'->',
+					{xtype:'refreshbutton'}
+				]}
+			],
+			multiSelect:false,
+			columns:[
+				{xtype:'rownumberer'},
+				{text:'号码',dataIndex:'no',minWidth:100,flex:1,summaryType:'count'},
+				{text:'使用人',xtype:'templatecolumn',dataIndex:'namecn',tpl:'{namecn} <s>{name}</s><r>{team_name}</r>',width:200},
+				{text:'分配日期',xtype:'datecolumn',dataIndex:'staffdate',width:88},
+				{text:'总量',dataIndex:'voice_addupupper',width:80,align:'right',renderer:'returnInt'},
+				{text:'已用',dataIndex:'voice_used',tdCls:'x-ui-text-green',width:80,align:'right',renderer:'returnInt'},
+				{text:'剩余',dataIndex:'voice_canuse',tdCls:'x-ui-text-red',width:80,align:'right',renderer:'returnInt'}
+			],
+			viewConfig:{enableTextSelection:false},
+			features:[{ftype:'summary',dock:'bottom'}],
+			listeners:{
+				itemdblclick:'onTransferClick'
+			}
+	   	},
+		{xtype:'grid',region:'center',title:'交接记录',margin:'0 0 0 3',
+			reference:'gridChange',
+			store:{
+				type:'call.change.staff',
+				autoLoad:true,
+				proxy:{extraParams:{idx:'TRANSFER'}}
+			},
+			dockedItems:[
+				{dock:'top',xtype:'toolbar',items:[
+					{xtype:'searchbar',fields:[
+						{emptyText:'原使用人...',xtype:'comboCompanyStaff',name:'before'},
+						{emptyText:'新使用人...',xtype:'comboCompanyStaff',name:'after'},
+						{xtype:'textfield',name:'query',width:140,emptyText:'关键字...'}
+					]},
+					'->',
+					{xtype:'refreshbutton'}
+				]},
+				{dock:'bottom',xtype:'pagingbar'}
+			],
+			columns:[
+				{xtype:'rownumberer'},
+				{text:'号码',dataIndex:'no',minWidth:100,flex:1,summaryType:'count'},
+				{text:'交接前',xtype:'templatecolumn',dataIndex:'before',minWidth:160,flex:1,tpl:'{before_team_name} · {before_namecn}'},
+				{text:'交接后',xtype:'templatecolumn',dataIndex:'after',minWidth:160,flex:1,tpl:'{after_team_name} · {after_namecn}'},
+				{text:'交接日期',dataIndex:'effectivedate',xtype:'datecolumn',width:100},
+				{text:'操作时间',dataIndex:'time',xtype:'datecolumn',format:'Y-m-d H:i A',width:160},
+				{text:'操作人',dataIndex:'operator',width:100}
+			],
+			features:[{ftype:'grouping'}]
+		}		
+	]
+});

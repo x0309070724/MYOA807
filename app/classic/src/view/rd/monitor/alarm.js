@@ -1,0 +1,42 @@
+﻿Ext.define('APP.view.rd.monitor.alarm',{
+    extend:'Ext.grid.Panel',
+    controller:'rd.monitor',
+	store:{
+		type:'cross',
+		autoLoad:true,
+		pageSize:false,
+		sorters:[{property:'time',direction:'DESC'},{property:'id',direction:'DESC'}],
+		proxy:{
+			url:Boot.appUrl('/rd/monitor/getAlarm.do')
+		}
+	},
+	viewConfig:{
+		stripeRows:true,
+		enableTextSelection:true
+	},
+	dockedItems:[
+		{dock:'top',xtype:'toolbar',items:[
+			{xtype:'searchbar',
+				fields:[
+					{emptyText:'关键字...',xtype:'textfield',name:'query',width:200}
+				]
+			},
+			'->',
+			{xtype:'refreshbutton'}
+		]},
+		{dock:'bottom',xtype:'pagingbar'}
+	],
+	forceFit:true,
+	columns:[
+		{xtype:'rownumberer'},
+		{text:'时间',dataIndex:'time',width:140,summaryType:'count'},
+		{text:'监控类型',dataIndex:'type',width:120},
+		{text:'名称',dataIndex:'index',width:100},
+		{text:'最后报警',dataIndex:'lasttime',width:140},
+		{text:'报警次数',dataIndex:'count',align:'right',width:60,summaryType:'sum'},
+		{text:'触发原因',dataIndex:'reason',minWidth:300,renderer:'returnMore'},
+		{text:'通知时间',dataIndex:'noticetime',width:140}
+	],
+	features:[{ftype:'groupingsummary'},{ftype:'summary',dock:'bottom'}]
+});
+

@@ -1,0 +1,77 @@
+﻿Ext.define('APP.view.ia.system.funds.deposit',{
+    extend:'Ext.form.Panel',
+    controller:'ia.system.funds',
+	width:680,
+	items:[
+		{collapsible:false,border:false,items:[
+			{columnWidth:1,items:[
+				{xtype:'checkbox',boxLabel:'启用入金功能',name:'enable',reference:'enableReference',value:1},
+				{xtype:'box',userCls:'x-ui-message x-ui-message-warning',html:'<b>警告：</b>「账户入金」功能已被禁用...',bind:{hidden:'{enableReference.checked}'}}
+			]}
+		]},
+		{collapsible:false,title:'配置项',bind:{hidden:'{!enableReference.checked}'},items:[
+			{columnWidth:1,items:[
+				{xtype:'fieldcontainer',layout:'hbox',hideEmptyLabel:false,items:[
+					{xtype:'checkbox',boxLabel:'启用实时汇率',name:'rate',
+						listeners:{
+							change:function(el,newValue,oldValue){
+								var f=el.up('form').getForm();
+								if(newValue==1){
+									f.findField('rate_fixed').setFieldLabel('失败时');
+									f.findField('rate_now').setHidden(false).setDisabled(false);
+								}else{
+									f.findField('rate_fixed').setFieldLabel('汇率');
+									f.findField('rate_fixed').setHidden(false).setDisabled(false);
+									f.findField('rate_now').setHidden(true).setDisabled(true);
+								}
+							}
+						}
+					}
+				]}
+			]},
+			{columnWidth:.35,items:[
+				{fieldLabel:'加',xtype:'numberfield',name:'rate_now',hidden:true,decimalPrecision:4,minValue:0,step:0.01,hideTrigger:false}
+			]},
+			{columnWidth:.35,items:[
+				{fieldLabel:'汇率',xtype:'numberfield',name:'rate_fixed',decimalPrecision:4,minValue:1,step:0.01,hideTrigger:false}
+			]},
+			{columnWidth:1},
+			{columnWidth:.35,items:[
+				{fieldLabel:'单笔最小',xtype:'numberfield',name:'amount_min',decimalPrecision:2,minValue:0,step:100,hideTrigger:false}
+			]},
+			{columnWidth:.35,items:[
+				{fieldLabel:'单笔最大',xtype:'numberfield',name:'amount_max',decimalPrecision:2,minValue:0,step:100,hideTrigger:false}
+			]},
+			{columnWidth:1,height:20},
+			{columnWidth:1,items:[
+				{fieldLabel:'功能控制',xtype:'checkboxarraygroup',layout:'vbox',name:'control',
+					defaults:{xtype:'container',layout:'hbox',defaults:{xtype:'checkbox',width:100}},
+					items:[
+						{items:[
+							{boxLabel:'需效验码'},
+							{boxLabel:'需要审核'}
+						]},
+						{items:[
+							{boxLabel:'短信通知'},
+							{boxLabel:'邮件通知'},
+							{boxLabel:'微信通知'}
+						]}
+					]
+				}
+			]}
+		]}
+	],
+	mateParameters:{
+		url:Boot.appUrl('/trade/settings/getDeposit.do')
+	},
+	listeners:{afterrender:'onMateFormLoadData'},
+	buttons:['->',
+		{text:'保存信息',iconCls:'f-mt mt-button-submit',scale:'medium',
+			mateParameters:{
+				url:Boot.appUrl('/trade/settings/updateDeposit.do')
+			},
+			handler:'onMateFormSubmit'
+		},
+		{text:'取消操作',iconCls:'f-mt mt-button-cancel',scale:'medium',handler:'onMateWindowDestroy'}
+	]
+});

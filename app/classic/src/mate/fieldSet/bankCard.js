@@ -1,0 +1,52 @@
+﻿Ext.define('APP.mate.fieldSet.bankCard',{
+    extend:'Ext.form.FieldSet',
+	alias:'widget.bankCardFieldSet',
+	title:'银行卡信息',
+	items:[
+		{columnWidth:.4,items:[
+			{xtype:'fieldcontainer',fieldLabel:'银行卡副本',items:[
+				{xtype:'uploadimagefield',
+					mateParameters:{
+						name:'bank_image',
+						api:'bankcard',
+						height:132,
+						callback:function(me,json){
+							if(json.api){
+								var form=me.up('form'),
+									data=json.api;
+								form.getForm().setValues({
+									bank_currency:'CNY',
+									bank_icon:data.icon,
+									bank_name:data.name,
+									bank_province:data.province,
+									bank_city:data.city,
+									bank_branch:data.branch,
+									bank_cardno:data.cardno
+								});
+							}
+						}
+					}
+				}
+			]}
+		]},
+		{columnWidth:.6,items:[
+			{xtype:'hiddenfield',name:'bank_icon'},
+			{fieldLabel:'币种',xtype:'radiogroup',columns:5,bind:{readOnly:'{form.audit}'},
+				items:[
+					{boxLabel:'CNY',name:'bank_currency',inputValue:'CNY',checked:true,reference:'isCNY'},
+					{boxLabel:'USD',name:'bank_currency',inputValue:'USD',checked:false,reference:'isUSD'}
+				]
+			},
+			{fieldLabel:'开户行',emptyText:'开户行',xtype:'textfield',name:'bank_name',allowBlank:false,bind:{readOnly:'{form.audit}'}},
+			{fieldLabel:'归属地',xtype:'fieldcontainer',layout:'hbox',bind:{hidden:'{isUSD.checked}',disabled:'{isUSD.checked}'},items:[
+				{emptyText:'州/省',xtype:'textfield',name:'bank_province',flex:.5,bind:{readOnly:'{form.audit}',hidden:'{isUSD.checked}',disabled:'{isUSD.checked}'}},
+				{emptyText:'城市',xtype:'textfield',name:'bank_city',flex:.5,margin:'0 0 0 5',bind:{readOnly:'{form.audit}',hidden:'{isUSD.checked}',disabled:'{isUSD.checked}'}}
+			]},
+			{fieldLabel:'支行',emptyText:'支行',xtype:'textfield',name:'bank_branch',bind:{readOnly:'{form.audit}',hidden:'{isUSD.checked}',disabled:'{isUSD.checked}'}},
+			{fieldLabel:'银行代码',emptyText:'银行代码',xtype:'textfield',name:'bank_swiftcode',hidden:true,bind:{readOnly:'{form.audit}',hidden:'{!isUSD.checked}',disabled:'{!isUSD.checked}'}},
+			{fieldLabel:'银行地址',emptyText:'银行地址',xtype:'textfield',name:'bank_address',hidden:true,bind:{readOnly:'{form.audit}',hidden:'{!isUSD.checked}',disabled:'{!isUSD.checked}'}},
+			{fieldLabel:'账号',emptyText:'账号',xtype:'textfield',name:'bank_cardno',allowBlank:false,bind:{readOnly:'{form.audit}'}}
+		]}
+	]
+});
+

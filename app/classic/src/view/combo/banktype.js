@@ -1,0 +1,16 @@
+Ext.define('APP.view.combo.banktype',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'comboBanktype',
+	store:{
+		fields:['value','display'],
+		data:[
+			[1,'银行卡'],
+			[0,'信用卡']
+		]
+	},
+	emptyText:'银行卡类型...',
+	width:120,
+	name:'direction',
+	valueField:'value',
+	displayField:'display'
+});
