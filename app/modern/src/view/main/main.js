@@ -3,6 +3,7 @@ Ext.define('APP.view.main.main', {
   xtype: 'main',
   controller: 'baseController',
   defaults: {
+    // If true, child items will be destroyed as soon as they are removed from this container.
     autoDestroy: true
     //layout:{animation:{type:'cover',direction:'left'}},
     //layout:{type:'card',animation:{type:'cover',direction:'left'}},

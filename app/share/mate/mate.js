@@ -241,8 +241,9 @@ Ext.define('APP.mate.mate', {
       if (Ext.isObject(data)) {
         var tmp = storage[key] || {};
         // console.log(tmp);
+        console.log(storage[key]);
         storage[key] = Ext.apply(tmp, data);
-        // console.log(storage[key]);
+        console.log(storage[key]);
       } else {
         storage[key] = data;
       }

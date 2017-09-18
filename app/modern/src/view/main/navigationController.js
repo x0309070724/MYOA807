@@ -76,7 +76,7 @@
 //		if(view.title){
 //			document.title=view.title;
 //		}
-    if (view.xtype != 'main' && view.xtype != 'login') {
+    if (view.xtype !== 'main' && view.xtype !== 'login') {
       // console.log(1111);
       var navbar = view.down('navbar');
       if (!navbar) {

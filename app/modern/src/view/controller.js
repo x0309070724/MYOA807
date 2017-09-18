@@ -118,7 +118,7 @@
           {root: 1000, xtype: 'sdIndex', title: '销售', iconCls: 'f-mt mt-access', userCls: 'x-ui-corange'},
           {root: 2000, xtype: 'rdIndex', title: '流程', iconCls: 'f-mt mt-chart-4', userCls: 'x-ui-gold'},
           {root: 3000, xtype: 'hrIndex', title: '通讯录', iconCls: 'f-mt mt-additve', userCls: 'x-ui-gold'},
-          {root: 4000, xtype: 'analysisIndex', title: '设置', iconCls: 'f-mt mt-chart-pie-3', userCls: 'x-ui-orange'},
+          {root: 4000, xtype: 'analysisIndex', title: '设置', iconCls: 'f-mt mt-chart-pie-3', userCls: 'x-ui-orange'}
           // {root: 5000, xtype: 'accountIndex', title: '我', iconCls: 'f-mt mt-account-audit', userCls: 'x-ui-green'}
         ];
       }
@@ -166,6 +166,8 @@
   },
   // ===========================================================================================MAIN 选项卡切换时 记录缓存
   onMainTabChange: function (tab, e) {
+    // 不传第二个参数，浏览器自动配置时间，在IE，FireFox中，第一次配可能给个很大的数字，100ms上下，往后会缩小到最小时间间隔，Safari，
+    // chrome，opera则多为10ms上下。
     window.setTimeout(function () {
       var main = tab.up('main'),
         tabbar = main.down('tabbar'),

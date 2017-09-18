@@ -11,7 +11,7 @@ Ext.define('APP.store.summary', {
   summary: function (store, records, successful, operation, eOpts) {
     if (successful) {
       var params = store.getProxy().getExtraParams();
-      console.log(params);
+      // console.log(params);
       var totalField = params.field;
       switch (params.sp) {
         // =============================================================================================================销售
