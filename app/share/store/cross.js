@@ -14,9 +14,11 @@ Ext.define('APP.store.cross', {
     type: 'jsonp',
     noCache: false,
     timeout: 60000,
+    // ecacheString?????
     ecacheString: '_',
     //simpleGroupMode:true,
     //simpleSortMode:true,
+    // totalProperty:Name of the property from which to retrieve the total number of records in the dataset.
     reader: {type: 'json', rootProperty: 'plant', totalProperty: 'totalProperty'},
     listeners: {
       exception: function (proxy, request, operation, eOpts) {

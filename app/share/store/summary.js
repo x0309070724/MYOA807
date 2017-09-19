@@ -14,7 +14,7 @@ Ext.define('APP.store.summary', {
       // console.log(params);
       var totalField = params.field;
       switch (params.sp) {
-        // =============================================================================================================销售
+        // ==========================================================================================================销售
         case 'SP_SD_SALES_STATISTICS':
         case 'SP_SD_SALES_TREND': {
           switch (params.field) {
@@ -34,7 +34,7 @@ Ext.define('APP.store.summary', {
           }
         }
           break;
-        // =============================================================================================================业绩
+        // ==========================================================================================================业绩
         case 'SP_SD_RESULTS_STATISTICS':
         case 'SP_SD_RESULTS_TREND':
         case 'SP_RD_TRADE_STATISTICS':
@@ -91,11 +91,10 @@ Ext.define('APP.store.summary', {
           });
         }
       });
-
       // 合计后 格式化值
       totalValueString = Ext.util.Format.money(totalValue);
       switch (params.sp) {
-        // =============================================================================================================销售
+        // ==========================================================================================================销售
         case 'SP_SD_RESULTS_STATISTICS':
         case 'SP_SD_RESULTS_TREND':
         case 'SP_RD_TRADE_STATISTICS':
@@ -112,7 +111,7 @@ Ext.define('APP.store.summary', {
           }
         }
           break;
-        // =============================================================================================================业绩
+        // ==========================================================================================================业绩
         case 'SP_SD_SALES_STATISTICS':
         case 'SP_SD_SALES_TREND': {
           switch (params.field) {
@@ -128,6 +127,8 @@ Ext.define('APP.store.summary', {
       store.totalValueString = totalValueString;
       store.chartData = chartData;
     }
+    // this is a function named count(),the next paragraphs just eq store.getCount();
+    // console.log(store.count);
     if (store.count) {
       store.each(function (record, i) {
         if (i >= store.count) {
@@ -136,7 +137,7 @@ Ext.define('APP.store.summary', {
       })
     }
     // console.log(records);
-    // console.log(store);
+    console.log(store);
   }
 });
 

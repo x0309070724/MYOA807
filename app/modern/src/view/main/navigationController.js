@@ -100,7 +100,7 @@
       // Updates the hash on the window. This shouldn't need to be used directly but use the add method instead.
       // Ext.util.History.setHash('main')
       // Add a new token to the history stack.
-      Ext.util.History.add('main')
+      Ext.util.History.add('main');
     }
   },
   setCurrentView: function (record) {
