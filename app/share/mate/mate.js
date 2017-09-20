@@ -278,9 +278,10 @@ Ext.define('APP.mate.mate', {
     },
 
 
-    //========================================================================================================================================各类提醒 START
+    // ====================================================================================================各类提醒 START
     showTask: function (message, warning, callback, times) {
-      var cls = warning ? 'mt-warning' : 'mt-notice'
+      var cls = warning ? 'mt-warning' : 'mt-notice';
+      // console.log(Ext.touch); //true
       if (Ext.touch) {
         Ext.toast({
           //userCls:'x-ui-task',
@@ -294,11 +295,9 @@ Ext.define('APP.mate.mate', {
           Ext.get('x-ui-task').update('');
           return '<div class="x-ui-task"><span class="f-mt ' + cls + '"></span><div>' + s + '</div></div>'
         }
-
         if (!Ext.get('x-ui-task')) {
-          msgCt = Ext.DomHelper.insertFirst(document.body, {id: 'x-ui-task'}, true)
+          var msgCt = Ext.DomHelper.insertFirst(document.body, {id: 'x-ui-task'}, true)
         }
-        ;
         var el = Ext.DomHelper.append(msgCt, createBox(message), true);
         el.animate({duration: 300, to: {y: 30}});
         window.setTimeout(function () {

@@ -39,9 +39,6 @@ html * {
 .x-ui-login .x-ui-logo {
   padding: .5em;
   border-radius: .5em;
-}
-
-.x-ui-login .x-ui-logo {
   text-align: center;
 }
 
@@ -64,7 +61,6 @@ html * {
   font-size: 1.5em;
   line-height: 120%;
   padding: .6em .4em;
-  text-align: right;
   color: #587aa9;
   background-color: rgba(0, 0, 0, .02);
   text-align: center;
