@@ -77,7 +77,6 @@
 //			document.title=view.title;
 //		}
     if (view.xtype !== 'main' && view.xtype !== 'login') {
-      // console.log(1111);
       var navbar = view.down('navbar');
       if (!navbar) {
         view.add(
@@ -96,7 +95,7 @@
 //			document.title=view.title;
 //		}
     if (eOpts === 2) {
-      // console.log(eOpts);
+      // console.log('navigation controller');
       // Updates the hash on the window. This shouldn't need to be used directly but use the add method instead.
       // Ext.util.History.setHash('main')
       // Add a new token to the history stack.

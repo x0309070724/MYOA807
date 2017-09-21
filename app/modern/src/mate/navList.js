@@ -1,7 +1,9 @@
 Ext.define('APP.mate.navList', {
   extend: 'Ext.dataview.DataView',
   xtype: 'navList',
+  // One or more CSS classes to add to the component's primary element.
   userCls: 'x-ui-nav',
+  // An additional CSS class to apply to items within the DataView.
   itemCls: 'x-ui-box x-ui-arrow',
   // Optional HTML content to render inside this Component, or a reference to an existing element on the page.
   html: 'NAV',

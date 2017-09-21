@@ -45,10 +45,10 @@
     }
   },
   onNavigationPop: function (button) {
+    // console.log('base controller');
     var navigation = button.up('navigationview');
     navigation.pop();
   },
-
 
   /*NVABAR MENU*/
   onRefreshSegmentedButtonToggle: function (container, button, pressed) {

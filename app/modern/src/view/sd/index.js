@@ -50,7 +50,7 @@ Ext.define('APP.view.sd.index', {
     //{xtype:'navList',type:'box',navigation:1001},
     // {xtype: 'navList', type: 'box', navigation: 1001, hideTitle: false},
     {xtype: 'navList', type: 'box', navigation: 1002, hideTitle: false},
-    {xtype: 'navList', type: 'list', navigation: 1003},
+    {xtype: 'navList', type: 'list', navigation: 1003}
     // {xtype: 'navList', type: 'list', navigation: 1004}
   ]
 });
