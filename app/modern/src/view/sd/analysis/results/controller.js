@@ -34,8 +34,9 @@
     navigation.push(view);
   },
 
-  // ===================================================================================================================LIST 按时间统计
+  // =====================================================================================================LIST 按时间统计
   onTimeItemtap: function (list, idx, el, record) {
+    // console.log(111);
     var navigation = list.up('navigationview'),
       store = list.getStore(),
       title,

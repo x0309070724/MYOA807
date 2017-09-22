@@ -1,7 +1,7 @@
 ﻿Ext.define('APP.view.analysis.controller', {
   extend: 'APP.view.controller',
   alias: 'controller.analysis',
-  // ===================================================================================================================INDEX
+  // ==============================================================================================================INDEX
   getIndexData: function (callback) {
     Mate.ajax({
       url: Boot.appUrl('/super/getTrend.do'),

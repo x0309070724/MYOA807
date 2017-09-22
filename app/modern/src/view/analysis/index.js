@@ -6,7 +6,7 @@ Ext.define('APP.view.analysis.index', {
   defaults: {scrollable: false},
   items: [
     {
-      xtype: 'carousel', userCls: 'x-ui-color-panel', indicator: false, height: 228, activeItem: 1,
+      xtype: 'carousel', userCls: 'x-ui-color-panel', indicator: false, height: 228, activeItem: 2,
       defaults: {
         data: ['N/A', 0, 0, 0, 0],
         tpl: [
