@@ -40,27 +40,28 @@ Ext.define('APP.store.cross', {
       return false
     }
     PushService.ready(function () {
-      var buffers = PushService.getBuffer(),
-        sync, task;
+      var buffers = PushService.getBuffer();
+      // var sync, task;
+      // console.log(buffers);
+      // console.log(loadEvent.mt4Sync.tag);
       switch (loadEvent.mt4Sync.tag) {
         case 'account': {
           runMt4Sync = function () {
             Ext.Array.each(records, function (record, i) {
-              //console.log(record.data.login)
+              // console.log(record.data.login)
               var mt4Record = buffers.getUser(record.data.login);
-//							if(mt4Record&&i<50){
-//								record.data.account_balance=mt4Record.balance
-//							}
+              // if (mt4Record && i < 50) {
+              //   record.data.account_balance = mt4Record.balance
+              // }
               if (mt4Record && i < 50) {
                 record.set({
-                  //agent:mt4Record.agent_account,
+                  // agent:mt4Record.agent_account,
                   account_enable: mt4Record.enable,
                   account_enable_change_password: mt4Record.enable_change_password,
                   account_enable_read_only: mt4Record.enable_read_only,
                   account_group: mt4Record.group,
                   account_lastdate: mt4Record.lastdate * 1000,
                   account_leverage: mt4Record.leverage,
-
                   account_balance: mt4Record.balance,
                   account_credit: mt4Record.credit,
                   account_equity: mt4Record.equity,
@@ -75,12 +76,14 @@ Ext.define('APP.store.cross', {
           break;
         default: {
           runMt4Sync = function () {
+            // console.log(records);
             Ext.Array.each(records, function (record, i) {
               var mt4Record = buffers.getUser(record.data.login);
+              // console.log(mt4Record);
               if (mt4Record) {
                 mt4Record.agent = mt4Record.agent_account;
-                mt4Record.lastdate = mt4Record.lastdate * 1000,
-                  record.set(mt4Record);
+                mt4Record.lastdate = mt4Record.lastdate * 1000;
+                record.set(mt4Record);
               }
             });
           }
@@ -88,16 +91,16 @@ Ext.define('APP.store.cross', {
           break;
       }
       runMt4Sync();
-//				if(mt4.interval){
-//					Ext.TaskManager.stop(task||false);
-//					task=Ext.TaskManager.start({
-//						run:function(){
-//							console.log(11111111)
-//							sync();
-//						},
-//						interval:mt4.interval
-//					})
-//				}
+      // if (mt4.interval) {
+      //   Ext.TaskManager.stop(task || false);
+      //   task = Ext.TaskManager.start({
+      //     run: function () {
+      //       console.log(11111111)
+      //       sync();
+      //     },
+      //     interval: mt4.interval
+      //   })
+      // }
     });
   },
   constructor: function (config) {
@@ -105,54 +108,48 @@ Ext.define('APP.store.cross', {
     this.callParent([config]);
 
     var proxy = this.proxy || {};
-    //console.log('pageSize',this.pageSize)
-    //console.log('super',this.super)
-    //=====================================================pageSze=false时，移除分页参数
+    // console.log('pageSize',this.pageSize);
+    // console.log('super', this.super);
+    // =====================================================pageSze=false时，移除分页参数
     if (!this.pageSize) {
       proxy.pageParam = false;
       proxy.limitParam = false;
       proxy.startParam = false;
     }
-    //=====================================================
-    //console.log(this,config.super,config.proxy)
+    // console.log(this, config.super, config.proxy)
     if (this.super) {
       proxy.url = proxy.url.replace('/analysis/', '/super/');
     }
-
-    //beforeload( store, operation, eOpts )
-    //add( store, records, index, eOpts )
-    //metachange( this, meta, eOpts )
-//		this.addListener('prefetch',function(store,records,eOpts){
-//			var me=this;
-//			console.log(store,records,eOpts)
-//		});
-
-
-    //=====================================================错误检查
+    // beforeload(store, operation, eOpts);
+    // add(store, records, index, eOpts);
+    // metachange(this, meta, eOpts);
+    // this.addListener('prefetch', function (store, records, eOpts) {
+    //   var me = this;
+    //   console.log(store, records, eOpts);
+    // });
+    // =====================================================错误检查
     this.addListener('load', function (store, records, success, eOpts) {
       var me = this;
       if (success) {
-        //console.log('load',eOpts._response)
+        // console.log('load', eOpts._response);
         var rlt = eOpts._response;
         if (!rlt.success) {
           Mate.checkErrCode(rlt, function () {
-            store.load()
+            store.load();
           });
         } else {
           var loadEvent = store.loadEvent;
           if (loadEvent.mt4Sync) {
-            store.mt4Sync(records)
+            store.mt4Sync(records);
           }
           if (loadEvent.selectFirstRow) {
-            console.log(me)
+            console.log(me);
           }
         }
       }
     });
   }
 });
-
-
 //agent_account:1237820
 //balance:0
 //credit:0
@@ -178,7 +175,6 @@ Ext.define('APP.store.cross', {
 //taxes:0
 //timestamp:0
 
-
 //						record.set({
 //							balance:rec.balance,
 //							credit:rec.credit,
@@ -197,5 +193,3 @@ Ext.define('APP.store.cross', {
 //							mt4_margin_free:rec.margin_free,
 //							mt4_margin_level:rec.margin_level,
 //						});
-
-

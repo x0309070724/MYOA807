@@ -11,6 +11,7 @@ Ext.define('APP.view.main.navigation', {
   layout: {type: 'card', animation: {type: 'cover'}},
   listeners: {
     // Fires when a view is pushed into this navigation view
+    // 除了push进navvigation以外，还要触发onNavigationPush这个方法
     push: 'onNavigationPush',
     pop: 'onNavigationPop'
   }

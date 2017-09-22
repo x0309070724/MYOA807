@@ -86,8 +86,5 @@
     {name: 'margin', type: 'number'},
     {name: 'margin_free', type: 'number'},
     {name: 'margin_level', type: 'number'}
-//		{name:'mt4',convert:function(v,record){
-//			console.log(record)
-//		}}
   ]
 });

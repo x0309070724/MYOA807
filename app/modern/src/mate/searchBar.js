@@ -36,11 +36,13 @@ Ext.define('APP.mate.searchBar', {
           blur: function (field) {
             var store = field.up('list').getStore(),
               params = store.getProxy().getExtraParams();
-            //field.setTextAlign('center');
+            // field.setTextAlign('center');
             if (field.getValue() && field.getValue() !== '') {
               Ext.apply(params, {query: field.getValue()});
               // Loads a given 'page' of data by setting the start and limit values appropriately. Internally this just
               // causes a normal load operation, passing in calculated 'start' and 'limit' params.
+              // page :  Number
+              // The number of the page to load.
               store.loadPage(1);
             }
           },

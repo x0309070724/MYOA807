@@ -1,12 +1,11 @@
 Ext.define('APP.view.sd.account.detail.funds',{
 	extend:'Ext.List',
 	xtype:'sdAccountDetailFunds',
-	controller:'sd.funds',	
+	controller:'sd.funds',
 	grouped:true,
 	store:{
 		type:'funds.apply',
 		autoLoad:false
-		//grouper:{groupFn:function(record){return Ext.Date.format(record.data.time,'Y-m')},property:'time',direction:'DESC'},			
 	},
 	plugins:[
 		{type:'pullrefresh'},
@@ -29,14 +28,14 @@ Ext.define('APP.view.sd.account.detail.funds',{
 		'</div>',
 		'<div class="x-ui-right">',
 			'<tpl switch="cmd">',
-				//=====================================================================================出入金
+				// =====================================================================================出入金
 				'<tpl case="1">',
 					'<tpl if="direction==1">',
 						'<label>入金</label><b class="x-ui-font-number x-ui-text-green">{money:usMoney}</b>',
 					'<tpl else>',
 						'<label>出金</label><b class="x-ui-font-number x-ui-text-red">{money:usMoney}</b>',
 					'</tpl>',
-				//=====================================================================================信用
+				// =====================================================================================信用
 				'<tpl case="2">',
 					'<tpl if="direction==1">',
 						'<label>借款</label><b class="x-ui-font-number x-ui-text-green">{money:usMoney}</b>',
