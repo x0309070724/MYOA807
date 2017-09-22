@@ -9,7 +9,6 @@
       before: function (id, action) {
         var me = this,
           navigation = Ext.Viewport.down('mainNavigation');
-
         if (APP.complete) {
           action.resume();
           return false;
@@ -29,6 +28,7 @@
     }
   },
   onMainRouteChange: function (routeId) {
+    // console.log(routeId);
     if (!routeId || routeId == '' || routeId == 'main') {
       return false;
     }
@@ -76,8 +76,8 @@
 //		if(view.title){
 //			document.title=view.title;
 //		}
-    if (view.xtype != 'main' && view.xtype != 'login') {
-      // console.log(1111);
+//     console.log(view.xtype);
+    if (view.xtype !== 'main' && view.xtype !== 'login') {
       var navbar = view.down('navbar');
       if (!navbar) {
         view.add(
@@ -96,11 +96,11 @@
 //			document.title=view.title;
 //		}
     if (eOpts === 2) {
-      // console.log(eOpts);
+      // console.log('navigation controller');
       // Updates the hash on the window. This shouldn't need to be used directly but use the add method instead.
       // Ext.util.History.setHash('main')
       // Add a new token to the history stack.
-      Ext.util.History.add('main')
+      Ext.util.History.add('main');
     }
   },
   setCurrentView: function (record) {
@@ -197,7 +197,7 @@
   },
   onLoginInitialize: function (view) {
     var me = this;
-    if (typeof(wx) != 'undefined') {
+    if (typeof(wx) !== 'undefined') {
       me.wechatAuthorization();
       //view.setActiveItem({xtype:'bindForm'})
       //window.location.href='http://localhost:999/wechat/#/authorize/bind.html?backUrl='+escape(window.location.href);
@@ -210,7 +210,7 @@
       button = form.down('button[name=submit]'),
       login = form.down('field[name=login]').getValue() || '',
       password = form.down('field[name=password]').getValue() || '';
-    if (login != '' && password != '') {
+    if (login !== '' && password !== '') {
       this.onLoginFormSubmit(button);
     }
   },
@@ -219,24 +219,24 @@
       form = button.up('formpanel'),
       login = form.down('field[name=login]').getValue() || '',
       password = form.down('field[name=password]').getValue() || '';
-
-    if (login == '') {
+    if (login === '') {
       Mate.showTask('<h6>错误消息</h6>请输入登陆帐号.', true);
       return false;
     }
-    if (password == '') {
+    if (password === '') {
       Mate.showTask('<h6>错误消息</h6>请输入登陆密码.', true);
       return false;
     }
     form.setMasked({xtype: 'loadmask'});
-    //button.setDisabled(true);
+    // button.setDisabled(true);
     Mate.ajax({
       url: Boot.appUrl('/login.do'),
       params: form.getValues(),
       success: function (json, opts) {
         APP.app.refreshMateData(function (json) {
           if (json.success) {
-            //form.unmask();
+            // form.unmask();
+            // Removes all items currently in the Container, optionally destroying them all.
             navigation.removeAll();
             navigation.setActiveItem({xtype: 'main'});
           }
@@ -244,10 +244,8 @@
       },
       failure: function (json, opts) {
         form.unmask();
-        //button.setDisabled(false).removeCls('x-submiting');
+        // button.setDisabled(false).removeCls('x-submiting');
       }
     });
   }
-
-
 });

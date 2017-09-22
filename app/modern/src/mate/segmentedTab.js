@@ -6,10 +6,11 @@ Ext.define('APP.mate.segmentedTab', {
   docked: 'bottom',
   defaults: {xtype: 'button', iconAlign: 'top', ripple: {color: 'blue'}, flex: 1},
   items: [
-    {text: 'TEXT'},
-    {text: 'TEXT'},
-    {text: 'TEXT'},
-    {text: 'TEXT'}
+    // 貌似没啥用，干掉
+    // {text: 'TEXT'},
+    // {text: 'TEXT'},
+    // {text: 'TEXT'},
+    // {text: 'TEXT'}
   ],
   listeners: {
     // Fires when the value changes.
@@ -42,9 +43,9 @@ Ext.define('APP.mate.segmentedTab', {
             break;
         }
       }
-//			if(button.sorter){
-//				store.setSorters(button.sorter);
-//			}
+      // if (button.sorter) {
+      //   store.setSorters(button.sorter);
+      // }
       params[segmented.name] = value;
       Ext.apply(store.proxy.extraParams, params);
       // console.log(store);

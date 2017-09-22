@@ -1,7 +1,7 @@
 ﻿Ext.define('APP.view.sd.account.controller', {
   extend: 'APP.view.sd.controller',
   alias: 'controller.sd.account',
-  // ===================================================================================================================账户申请记录 详情
+  // ====================================================================================================账户申请记录 详情
   onApplyRecordItemtap: function (list, idx, el, record) {
     var navigation = list.up('navigationview');
     var view = Ext.create({
@@ -13,11 +13,12 @@
     view.setRecord(record);
   },
 
-  // ===================================================================================================================账户详情
+  // ============================================================================================================账户详情
   onRecordItemtap: function (list, idx, el, record) {
     var navigation = list.up('navigationview');
-    var login = record.data.objects ? record.data.objects : record.data.login,
-      login = parseInt(login) || 0;
+    // console.log(record);
+    var login = record.data.objects ? record.data.objects : record.data.login;
+    login = parseInt(login) || 0;
     var view = Ext.create({
       xtype: 'sdAccountDetailIndex',
       title: login.toString(),
@@ -31,13 +32,13 @@
     navigation.push(view);
   },
 
-  //===================================================================================================================详情页
+  // ==============================================================================================================详情页
   onDetailInfoInitialize: function (view) {
-    //view.setMasked({xtype:'loadmask'});
+    view.setMasked({xtype: 'loadmask'});
     var parameter = view.parameter;
-
+    // console.log(parameter);
     Mate.ajax({
-//			url:Boot.appUrl('/sd/account/checkMt4Login.do'),
+      // url:Boot.appUrl('/sd/account/checkMt4Login.do'),
       url: Boot.appUrl('/sd/account/manager/getRecord.do'),
       params: {login: parameter.login},
       success: function (json, opts) {
@@ -57,26 +58,22 @@
       }
     });
   },
-  //===================================================================================================================出入金
-//	onDetailFundsInitialize:function(list){
-//		var store=list.getStore(),
-//			parameter=list.parameter||{};
-//		Ext.apply(store.getProxy().getExtraParams(),parameter);
-//		store.loadPage(1);
-//	},
-
-
+  // ==============================================================================================================出入金
+  // onDetailFundsInitialize: function (list) {
+  //   var store = list.getStore(),
+  //     parameter = list.parameter || {};
+  //   Ext.apply(store.getProxy().getExtraParams(), parameter);
+  //   store.loadPage(1);
+  // },
   onDetailPositionsInitialize: function (list) {
     var store = list.getStore(),
       parameter = list.parameter || {};
     PushService.ready(function () {
       var buffers = PushService.getBuffer(),
         data = buffers.getTradesByLogin(parameter.login);
-      console.log(data)
+      // console.log(data);
       store.setData(data);
-      //list.unmask();
+      // list.unmask();
     });
-  },
-
-
+  }
 });

@@ -3,10 +3,10 @@ node_modules/
 dist/
 build/
 SDK/
-OSS/
 log/
 .well-known/
 _/
+OSS/
 index/
 page/
 wechat/

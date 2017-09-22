@@ -5,6 +5,7 @@ Ext.define('Override.util.Format', {
       return '';
     }
     if (!Ext.isDate(value)) {
+      // console.log(format);// Y-m-d H:i A
       value = new Date(value);
     }
     return Ext.Date.dateFormat(value, format || Ext.Date.defaultFormat);
@@ -31,16 +32,16 @@ Ext.define('Override.util.Format', {
     }
     return value;
   },
-  //===================================================================================================金额
+  // ===============================================================================================================金额
   money: function (value, digits) {
     value = Number(value) || 0;
     return this.number(value, '0,0.00')
   },
   usMoney: function (value, digits) {
-    var value = Number(value) || 0,
-      sign = '$',
-      digits = digits ? digits : 2;
-    return this.currency(value, sign, digits)
+    value = Number(value) || 0;
+    digits = digits ? digits : 2;
+    var sign = '$';
+    return this.currency(value, sign, digits);
   },
   cnyMoney: function (value, digits) {
     var value = Number(value) || 0,
@@ -52,7 +53,7 @@ Ext.define('Override.util.Format', {
     var value = Number(value) * 0.001;
     return this.number(value, '0,0 K')
   },
-  // ===================================================================================================================整数
+  // ===============================================================================================================整数
   int: function (value) {
     return Ext.isNumeric(value) ? parseInt(value) : 0
   },
@@ -67,7 +68,7 @@ Ext.define('Override.util.Format', {
     value = Number(value) || 0;
     return Ext.util.Format.number(value, '0,0')
   },
-  //===================================================================================================小数
+  // ===============================================================================================================小数
   numeral: function (value) {
     return Ext.isNumeric(value) ? parseFloat(value) : 0
   },
@@ -78,9 +79,9 @@ Ext.define('Override.util.Format', {
     return this.number(value, tmp);
   },
   stringNumeral: function (value, digits) {
-    var value = parseFloat(value) || 0,
-      digits = digits || 2,
-      tmp = Ext.String.format('{0}', '#,' + 1 / Math.pow(10, digits));
+    value = parseFloat(value) || 0;
+    digits = digits || 2;
+    var tmp = Ext.String.format('{0}', '#,' + 1 / Math.pow(10, digits));
     return this.number(value, tmp);
   },
   array: function (value) {
@@ -320,8 +321,6 @@ Ext.define('Override.util.Format', {
         break
     }
   },
-
-
   strAudit: function (value, isIcon) {
     var icon = '',
       text = '';
@@ -442,10 +441,12 @@ Ext.define('Override.util.Format', {
     return '//q.qlogo.cn/headimg_dl?bs=qq&dst_uin=' + uin + '&spec=100';
   },
   qqHref: function (uin) {
+    // console.log(uin);//null
     uin = this.integer(uin);
+    // console.log(uin);//0
     var href = '';
     switch (Ext.os.name) {
-      //iOS|Android|WebOS|BlackBerry|MacOS|Windows|Linux|Other
+      // iOS|Android|WebOS|BlackBerry|MacOS|Windows|Linux|Other
       case 'iOS': {
         href = 'mqq://im/chat?chat_type=wpa&uin=' + uin + '&version=1&src_type=web';
       }

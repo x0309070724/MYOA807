@@ -2,7 +2,9 @@
 //Ext.enableFx=false;
 //Ext.supports.MouseWheel=false;
 Ext.ariaWarn = Ext.emptyFn;
-
+// Loads Ext.app.Application class and starts it up with given configuration after the page is ready.
+// config :  Object/String
+// Application config object or name of a class derived from Ext.app.Application.
 Ext.application({
   name: 'APP',
   extend: 'APP.Application',
@@ -55,8 +57,12 @@ Ext.application({
     return key ? data[key] : data;
   },
   updateViewData: function (key, json) {
+    // The ViewModel is a data provider for this component and its children. The data contained in the ViewModel is
+    // typically used by adding bind configs to the components that want present or edit this data.
     var me = this,
       viewModel = this.getViewModel();
+    // 为什么下面else里面的viewModel.set()会影响这里的viewModel的输出呢？是执行时机的问题？
+    // console.log(viewModel);
     if (key) {
       viewModel.set(key, json || {});
     } else {
@@ -76,8 +82,6 @@ Ext.application({
       viewModel.set('time', Ext.Date.format(new Date(), 'Y-m-d H:i A'));
     }
   },
-
-
   getTeamTreeData: function (json) {
     var json = APP.app.data;
 
@@ -155,13 +159,16 @@ Ext.application({
     }
   },
   refreshMateData: function (callback) {
-    //Mate.waiting('<h6>正在加载最新配置信息</h6>')
+    // Mate.waiting('<h6>正在加载最新配置信息</h6>');
     var me = this;
+    // console.log(APP);
+    // console.log(this);
     Mate.ajax({
       url: Boot.appUrl('/mate.do'),
       success: function (json) {
+        // console.log(json);
         APP.complete = true;
-        //===================================================================================构造权限按钮
+        // ============================================================构造权限按钮
         if (json.pushKey) {
           me.updateAccount(json);
           //Mate.setJsonStorage('CACHE',json);
@@ -172,6 +179,7 @@ Ext.application({
         }
         me.data = json;
         me.updateViewData(false, json);
+        // console.log(callback);
         return callback ? callback(json) : false;
       },
       failure: function (json) {

@@ -67,7 +67,7 @@ Ext.define('APP.data.oaNav',{
 						{leaf:true,id:100209,iconCls:'f-mt mt-month',text:'测试',view:'sd.analysis.results.time',parameter:{datepart:'month',field:'funds'}}
 					]},
 					{id:1003,iconCls:'f-mt mt-out-audit',text:'账户',expanded:true,children:[
-						{leaf:true,id:100301,iconCls:'f-mt mt-account-strate',text:'申请记录',description:'查询账户申请的处理结果',view:'sd.account.applyRecord',parameter:{audit:''}},
+						{leaf:true,id:100301,iconCls:'f-mt mt-account-strate',text:'申请记录',description:'查询账户申请的处理结果',view:'sd.account.applyRecord',parameter:{audit:'1'}},
 						{leaf:true,id:100302,iconCls:'f-mt mt-fulltime',text:'账户查询',description:'查询账户详细信息',view:'sd.account.record',parameter:{app:''}},
 						{leaf:true,id:100303,iconCls:'f-mt mt-customer',text:'账户报表',description:'交易账户数据统计',view:'sd.account.accountReport',parameter:{field:'funds'}},
 						{leaf:true,id:100304,iconCls:'f-mt mt-additve',text:'代理报表',description:'代理账户数据统计',view:'sd.account.agentReport',parameter:{field:'agent'}}

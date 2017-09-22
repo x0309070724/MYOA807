@@ -39,9 +39,6 @@ html * {
 .x-ui-login .x-ui-logo {
   padding: .5em;
   border-radius: .5em;
-}
-
-.x-ui-login .x-ui-logo {
   text-align: center;
 }
 
@@ -64,7 +61,6 @@ html * {
   font-size: 1.5em;
   line-height: 120%;
   padding: .6em .4em;
-  text-align: right;
   color: #587aa9;
   background-color: rgba(0, 0, 0, .02);
   text-align: center;
@@ -106,11 +102,11 @@ html * {
 */
 
 .x-ui-title {
+  padding: 7px 5px 3px 5px;
+  line-height: 1.5;
   font-size: 16px;
   font-weight: 400;
   color: #798b9a;
-  line-height: 1.5;
-  padding: 7px 5px 3px 5px;
 }
 
 .x-ui-arrow:after {
@@ -121,7 +117,6 @@ html * {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   transform: rotate(45deg);
-  border: 0;
   border-top: .1em solid #c7c7cc;
   border-right: .1em solid #c7c7cc;
   position: absolute;
@@ -297,28 +292,29 @@ html * {
   border-top: 0;
 }
 
-/*NAV-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*NAV-----------------------------------------------------------------------------------------------------------------*/
 /*NAV ICON*/
 .x-ui-nav-icon {
-  border: 0;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
-  text-shadow: none;
-  background: none;
   display: inline-block;
   vertical-align: middle;
+  margin: 0;
+  padding: 0;
   width: 28px;
   height: 48px;
+  border: 0;
+  box-shadow: none;
+  text-shadow: none;
   text-align: center;
+  background: none;
 }
 
 .x-ui-nav-icon > span {
+  display: block;
+  margin: auto;
   width: 100%;
   height: 100%;
-  margin: auto;
+  /*font-variant 属性设置小型大写字母的字体显示文本*/
   font-variant: normal;
-  display: block;
   text-align: center;
 }
 
@@ -342,10 +338,10 @@ html * {
 }
 
 .x-ui-circle .x-ui-nav-icon {
+  margin-bottom: 3px;
   width: 56px;
   height: 56px;
   border-radius: 100%;
-  margin-bottom: 3px;
 }
 
 .x-ui-circle .x-ui-nav-icon > span:before {
@@ -384,16 +380,16 @@ html * {
 }
 
 .x-ui-nav .x-dataview-item {
-  background-color: #fff;
   position: relative;
   padding: 10px;
+  background-color: #fff;
 }
 
 .x-ui-nav .x-dataview-item:before {
-  display: block;
   content: '';
+  display: block;
   width: 100%;
-  border-bottom: .5px #dedede solid;
+  border-bottom: .5px solid #dedede;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -414,21 +410,18 @@ html * {
 .x-ui-nav .x-dataview-item h3 {
   display: inline-block;
   vertical-align: middle;
-  line-height: 1;
   margin-left: 10px;
-}
-
-.x-ui-nav .x-dataview-item h3 {
+  line-height: 1;
   font-size: 14px;
-  color: #4c5f70;
   font-weight: 300;
+  color: #4c5f70;
 }
 
 .x-ui-nav .x-dataview-item h3 span {
-  font-size: 12px;
   line-height: 1.2;
-  color: #808080;
+  font-size: 12px;
   font-weight: 300;
+  color: #808080;
 }
 
 .x-ui-nav .x-dataview-item h3 span.description {
@@ -455,13 +448,13 @@ html * {
 }
 
 .x-ui-nav-box .x-dataview-item {
-  width: 33.333333%;
   display: inline-block;
+  padding: 10px 5px;
+  width: 33.333333%;
   text-align: center;
+  background-color: #fff;
   /*border-top: .5px #dedede solid;*/
   /*border-right: .5px #dedede solid;*/
-  padding: 10px 5px;
-  background-color: #fff;
 }
 
 .x-ui-nav-box .x-dataview-item:nth-child(3n+1) {
@@ -486,10 +479,10 @@ html * {
 }
 
 .x-ui-nav-box .x-dataview-item h3 {
+  line-height: 1;
+  font-size: 12px;
   font-weight: 300;
   color: #4c5f70;
-  font-size: 12px;
-  line-height: 1;
 }
 
 /*BASE*/
@@ -817,12 +810,13 @@ html * {
 }
 
 .x-ui-user-icon .x-img {
-  border-radius: 100%;
-  margin: 30px auto 5px auto;
-  background: url(images/account.png) #b9bdc6 center center no-repeat;
-  background-size: 100px 100px;;
   position: relative;
+  margin: 30px auto 5px auto;
+  border-radius: 100%;
+  background: #b9bdc6 url(images/account.png) no-repeat center center;
+  background-size: 100px 100px;;
   border: 2px solid rgba(255, 255, 255, .95);
+  /*animation: name duration timing-function delay iteration-count direction;*/
   animation: rotate 20s linear infinite;
 }
 

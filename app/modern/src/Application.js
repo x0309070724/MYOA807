@@ -37,7 +37,6 @@ Ext.define('APP.Application', {
       storeId: 'nav',
       root: {expanded: true, children: oaNav.navigation}
     });
-
     Ext.Viewport.setViewModel(true);
     navigation = Ext.widget('mainNavigation');
     //Ext.Viewport.down('mainNavigation');

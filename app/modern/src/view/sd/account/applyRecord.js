@@ -3,13 +3,15 @@ Ext.define('APP.view.sd.account.applyRecord', {
   xtype: 'sdAccountApplyRecord',
   controller: 'sd.account',
   grouped: true,
-  //masked:{xtype:'loadmask'},
+  // masked:{xtype:'loadmask'},
   store: {
     type: 'account.apply',
     proxy: {extraParams: {}}
   },
   plugins: [
     {type: 'pullrefresh'},
+    // Adds a Load More button at the bottom of the list. When the user presses this button, the next page of data will
+    // be loaded into the store and appended to the List.
     {type: 'listpaging'}
   ],
   viewModel: {data: {parameter: {audit: ''}}},
@@ -22,7 +24,8 @@ Ext.define('APP.view.sd.account.applyRecord', {
         {text: '处理中', iconCls: 'f-mt mt-hollow-state-wait', value: 0},
         {text: '已通过', iconCls: 'f-mt mt-hollow-state-yes', value: 1},
         {text: '已拒绝', iconCls: 'f-mt mt-hollow-state-no', value: -1},
-        {text: '全部', iconCls: 'f-mt mt-hollow-state-all', value: ''}
+        {text: '全部', iconCls: 'f-mt mt-hollow-state-all', value: ''},
+        {text: '哼哼', iconCls: 'f-mt mt-hollow-state-all', value: ''}
       ]
     }
   ],
