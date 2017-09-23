@@ -2,7 +2,7 @@ Ext.define('APP.view.sd.funds.detail',{
 	extend:'Ext.Container',
 	xtype:'sdFundsDetail',
 	controller:'sd.funds',
-	//userCls:'x-ui-container',
+	// userCls:'x-ui-container',
 	padding:5,
 	scrollable:true,
 	tpl:[
@@ -15,7 +15,6 @@ Ext.define('APP.view.sd.funds.detail',{
 					'<tpl if="agent&&agent!=login">',
 						'<tr><td>代理：</td><td><b>{agent}</b><r>{agent_name}</r></td></tr>',
 					'</tpl>',
-
 					'<tr><td>销售：</td><td>',
 						'<tpl if="salesmanid">',
 							'{salesman_namecn} <s>{salesman_name}</s> <r>{salesman_team_name}</r>',
@@ -23,23 +22,20 @@ Ext.define('APP.view.sd.funds.detail',{
 								'<br/>',
 								'{salesman2_namecn} <s>{salesman2_name}</s> <r>{salesman2_team_name}</r>',
 							'</tpl>',
-						'<tpl else>',	
+						'<tpl else>',
 							'<b class="x-ui-text-red">N/A</b>',
 						'</tpl>',
 					'</td></tr>',
-					
 					'<tpl if="transfer">',
 						'<tr><td>对方：</td><td><b>{transfer}</b></td></tr>',
 					'</tpl>',
-
 					'<tr><td>金额：</td><td>',
 						'<tpl if="direction==1">',
 							'<b class="x-ui-text-green">{money:usMoney}</b>',
-						'<tpl else>',	
+						'<tpl else>',
 							'<b class="x-ui-text-red">{money:usMoney}</b>',
 						'</tpl>',
 					'</td></tr>',
-
 					'<tr><td>时间：</td><td>',
 						'<span class="x-ui-text-green">北京：{time:date("Y-m-d H:i A")}</span><br/>',
 						'<span class="x-ui-text-blue">伦敦：{time:utcDate("Y-m-d H:i A")}</span>',
@@ -56,7 +52,7 @@ Ext.define('APP.view.sd.funds.detail',{
 						'<tr><td>说明：</td><td>',
 							'<tpl if="audit==-1">',
 								'<span class="x-ui-text-red">{audit_explain}</span>',
-							'<tpl else>',	
+							'<tpl else>',
 								'{audit_explain}',
 							'</tpl>',
 						'</td></tr>',
@@ -91,14 +87,3 @@ Ext.define('APP.view.sd.funds.detail',{
 		'</tpl>'
 	]
 });
-
-
-
-
-
-
-
-
-
-
-

@@ -62,10 +62,10 @@
   },
 
 
-  //========================================Store Apply后 LOAD
+  // =================================================================================================Store Apply后 LOAD
   onApplyStoreLoad: function (view) {
-    var me = this,
-      store = view.getStore(),
+    // var me = this;
+    var store = view.getStore(),
       params = view.parameter || {};
     Ext.apply(store.getProxy().getExtraParams(), params);
     store.loadPage(1);

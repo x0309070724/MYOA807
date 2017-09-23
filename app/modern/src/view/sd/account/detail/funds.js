@@ -17,8 +17,6 @@ Ext.define('APP.view.sd.account.detail.funds',{
 			'{time:date("H:i A")}',
 		'</div>',
 		'<div class="x-ui-explain">',
-			//'<p><span class="x-ui-label x-ui-bg-black">{login}</span> <span class="x-ui-label x-ui-bg-black">{account_namecn}</span> <span class="x-ui-label x-ui-bg-black">{account_type}</span></p>',
-			//'<p><label>销售：</label>{salesman_namecn} {salesman2_namecn}</p>',
 			'<tpl if="cmd==3">',
 				'<p><label>对方：</label>{transfer}</p>',
 			'<tpl else>',

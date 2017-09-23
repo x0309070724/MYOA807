@@ -5,19 +5,21 @@ Ext.define('APP.mate.mate', {
       successMessage: '<h6>操作成功</h6>恭喜，指令已成功执行完毕...'
     },
     proxyType: function () {
-      return window.location.host != Boot.appDomain ? 'jsonp' : 'ajax';
-      //return 'ajax';
+      return window.location.host !== Boot.appDomain ? 'jsonp' : 'ajax';
+      // return 'ajax';
     },
     ajax: function (opts) {
+      console.log(opts);
+      // console.log(Mate.proxyType());
       switch (Mate.proxyType()) {
         case 'jsonp': {
           Ext.data.JsonP.request({
             method: opts.method || 'GET',
             url: opts.url,
             params: opts.params || false,
-            //timeout:opts.timeout||180*1000,
+            // timeout:opts.timeout||180*1000,
             callback: function (success, response) {
-              //console.log(success,response)
+              // console.log(success,response)
               var rlt = response;
               if (success) {
                 if (rlt.success) {
@@ -32,10 +34,9 @@ Ext.define('APP.mate.mate', {
                 return opts.failure ? opts.failure({message: message}) : false;
               }
             }
-            //success:opts.success||false,
-            //failure:opts.failure||false
+            // success:opts.success||false,
+            // failure:opts.failure||false
           });
-
         }
           break;
         default: {
