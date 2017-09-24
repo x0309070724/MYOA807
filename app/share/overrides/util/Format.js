@@ -50,7 +50,7 @@ Ext.define('Override.util.Format', {
     return this.currency(value, sign, digits)
   },
   moneyK: function (value, digits) {
-    var value = Number(value) * 0.001;
+    value = Number(value) * 0.001;
     return this.number(value, '0,0 K')
   },
   // ===============================================================================================================整数
@@ -81,7 +81,12 @@ Ext.define('Override.util.Format', {
   stringNumeral: function (value, digits) {
     value = parseFloat(value) || 0;
     digits = digits || 2;
+    // pow() 方法可返回 x 的 y 次幂的值。
+    // 如果结果是虚数或负数，则该方法将返回 NaN。如果由于指数过大而引起浮点溢出，则该方法将返回 Infinity。
     var tmp = Ext.String.format('{0}', '#,' + 1 / Math.pow(10, digits));
+    // console.log(tmp);
+    // console.log(this.number(value,tmp));
+    // Formats the passed number according to the passed format string.
     return this.number(value, tmp);
   },
   array: function (value) {
@@ -510,11 +515,9 @@ Ext.define('Override.util.Format', {
       return value.substr(0, 4) + ' **** **** ' + value.substr(value.length - 4, 4)
     }
   },
-
-
-  //-------------------------------------------------------------------------------------------------------------TRADE CMD
+  // =========================================================================================================TRADE CMD
   tradeCmd: function (cmd) {
-    var cmdText = ''
+    var cmdText = '';
     switch (cmd) {
       case 0: {
         cmdText = 'BUY';
@@ -551,8 +554,6 @@ Ext.define('Override.util.Format', {
     }
     return cmdText;
   },
-
-
   //-------------------------------------------------------------------------------------------------------------交易字段计算
   tradeVal: function (field, rec, total) {
     var prefix = '', v = 0;

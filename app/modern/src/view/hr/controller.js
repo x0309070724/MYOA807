@@ -12,16 +12,15 @@
     store.sort('sortnum', 'ASC');
     tree.setStore(store);
   },
-
-
   onStaffInitialize: function (tree) {
-    //tree.setStore(store);
+    // tree.setStore(store);
     this.onTeamInitialize(tree);
     var staffData = APP.app.getAppData('company/staff'),
       staffArr = {},
       staffTeamArr = [],
       staffStore = tree.getStore();
-    // console.log(staffData);
+    // console.log(staffStore);
+    console.log(staffData);
     Ext.Array.each(staffData, function (record) {
       if (record.departmentid !== 106) {
         if (!staffArr[record.teamid]) {

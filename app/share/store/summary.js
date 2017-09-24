@@ -14,7 +14,7 @@ Ext.define('APP.store.summary', {
       // console.log(params);
       var totalField = params.field;
       switch (params.sp) {
-        // ==========================================================================================================销售
+        // =========================================================================================================销售
         case 'SP_SD_SALES_STATISTICS':
         case 'SP_SD_SALES_TREND': {
           switch (params.field) {
@@ -30,11 +30,11 @@ Ext.define('APP.store.summary', {
               totalField = 'call_duration';
             }
               break;
-            //default:{totalField=params.field}break;
+            // default:{totalField=params.field}break;
           }
         }
           break;
-        // ==========================================================================================================业绩
+        // =========================================================================================================业绩
         case 'SP_SD_RESULTS_STATISTICS':
         case 'SP_SD_RESULTS_TREND':
         case 'SP_RD_TRADE_STATISTICS':
@@ -68,7 +68,7 @@ Ext.define('APP.store.summary', {
               totalField = 'trade_clear';
             }
               break;
-            //default:{totalField=params.field}break;
+            // default:{totalField=params.field}break;
           }
         }
           break;
@@ -94,7 +94,7 @@ Ext.define('APP.store.summary', {
       // 合计后 格式化值
       totalValueString = Ext.util.Format.money(totalValue);
       switch (params.sp) {
-        // ==========================================================================================================销售
+        // =========================================================================================================销售
         case 'SP_SD_RESULTS_STATISTICS':
         case 'SP_SD_RESULTS_TREND':
         case 'SP_RD_TRADE_STATISTICS':
@@ -111,7 +111,7 @@ Ext.define('APP.store.summary', {
           }
         }
           break;
-        // ==========================================================================================================业绩
+        // =========================================================================================================业绩
         case 'SP_SD_SALES_STATISTICS':
         case 'SP_SD_SALES_TREND': {
           switch (params.field) {
@@ -137,7 +137,7 @@ Ext.define('APP.store.summary', {
       })
     }
     // console.log(records);
-    console.log(store);
+    // console.log(store);
   }
 });
 

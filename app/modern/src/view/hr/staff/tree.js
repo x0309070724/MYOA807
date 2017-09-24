@@ -13,7 +13,7 @@ Ext.define('APP.view.hr.staff.tree', {
       expanderOnly: false,
       columns: [
         {text: 'NAME', xtype: 'treecolumn', dataIndex: 'name', renderer: 'returnRootName', flex: .7},
-        //{text:'COUNT',dataIndex:'count',align:'right',flex:.3},
+        // {text:'COUNT',dataIndex:'count',align:'right',flex:.3},
         {text: 'MANAGER', dataIndex: 'info', align: 'right', flex: .3}
       ],
       listeners: {

@@ -7,8 +7,8 @@ Ext.define('APP.mate.navList', {
   itemCls: 'x-ui-box x-ui-arrow',
   // Optional HTML content to render inside this Component, or a reference to an existing element on the page.
   html: 'NAV',
-  //ripple:false,
-  //itemRipple:false,
+  // ripple:false,
+  // itemRipple:false,
   itemTpl: [
     '<div class="x-ui-nav-icon"><span class="{iconCls}"></span></div>',
     '<h3>',

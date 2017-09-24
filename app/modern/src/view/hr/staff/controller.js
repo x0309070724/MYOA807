@@ -41,6 +41,7 @@
     //view.setRecord(record);
   },
   onContactsDetailInitialize: function (view) {
+    // console.log(view.parameter.id);
     Mate.ajax({
       url: Boot.appUrl('/hr/staff/profile/getInfo.do'),
       params: {id: view.parameter.id},
@@ -61,7 +62,6 @@
       }
     });
   }
-
 });
 
 

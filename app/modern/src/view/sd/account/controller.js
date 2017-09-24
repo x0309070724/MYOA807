@@ -13,7 +13,7 @@
     view.setRecord(record);
   },
 
-  // ============================================================================================================账户详情
+  // ===========================================================================================================账户详情
   onRecordItemtap: function (list, idx, el, record) {
     var navigation = list.up('navigationview');
     // console.log(record);
@@ -32,7 +32,7 @@
     navigation.push(view);
   },
 
-  // ==============================================================================================================详情页
+  // =============================================================================================================详情页
   onDetailInfoInitialize: function (view) {
     view.setMasked({xtype: 'loadmask'});
     var parameter = view.parameter;
@@ -58,7 +58,7 @@
       }
     });
   },
-  // ==============================================================================================================出入金
+  // =============================================================================================================出入金
   // onDetailFundsInitialize: function (list) {
   //   var store = list.getStore(),
   //     parameter = list.parameter || {};
@@ -72,6 +72,7 @@
       var buffers = PushService.getBuffer(),
         data = buffers.getTradesByLogin(parameter.login);
       // console.log(data);
+      // console.log(buffers);
       store.setData(data);
       // list.unmask();
     });

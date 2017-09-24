@@ -15,7 +15,7 @@ Ext.define('APP.view.hr.index', {
       }
     ]
     },
-    {xtype: 'navList', type: 'list', userCls: 'x-ui-nav x-ui-mini', navigation: 3001},
+    {xtype: 'navList', type: 'list', userCls: 'x-ui-nav x-ui-mini', navigation: 3001}
     // {xtype: 'navList', type: 'box', navigation: 3002},
     // {xtype: 'navList', type: 'box', navigation: 3003}
   ]

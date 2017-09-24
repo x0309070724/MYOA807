@@ -17,7 +17,7 @@ Ext.define('APP.view.hr.team.tree', {
       ],
       listeners: {
         initialize: 'onTeamInitialize'
-        //itemtap:''
+        // itemtap:''
       }
     }
   ]

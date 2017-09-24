@@ -2,8 +2,8 @@ Ext.define('APP.view.rd.qun.record', {
   extend: 'Ext.List',
   xtype: 'rdQunRecord',
   controller: 'rd.qun',
-  //grouped:true,
-  //masked:{xtype:'loadmask'},
+  // grouped:true,
+  // masked:{xtype:'loadmask'},
   store: {
     type: 'rdShoutingQunGroup',
     pageSize: 30,
@@ -24,7 +24,9 @@ Ext.define('APP.view.rd.qun.record', {
       '<img src="{gc:qunFace}" alt="">',
     '</div>',
     '<div class="x-ui-explain">',
-      '<p class="x-ui-first"><span class="x-ui-label x-ui-bg-black">{gc}</span><span class="x-ui-label x-ui-bg-black">{gn}</span></p>',
+      '<p class="x-ui-first">',
+        '<span class="x-ui-label x-ui-bg-black">{gc}</span><span class="x-ui-label x-ui-bg-black">{gn}</span>',
+      '</p>',
       '<p><label>成员数：</label>{count}/{max_count}</p>',
       '<p><label>发言率：</label>{speak_month_count}%</p>',
     //'<p><label>销售团队：</label>{sd_team_name} {sd_user_namecn}</p>',
@@ -33,7 +35,7 @@ Ext.define('APP.view.rd.qun.record', {
     '</div>'
   ],
   listeners: {
-    //initialize:'onRecordInitialize',
-    //itemtap:'onRecordItemtap'
+    // initialize:'onRecordInitialize',
+    // itemtap:'onRecordItemtap'
   }
 });

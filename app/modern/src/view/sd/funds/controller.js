@@ -11,16 +11,16 @@
     navigation.push(view);
     view.setRecord(record);
     if (record.data.audit === 0 && !record.data.assets) {
-      //view.setMasked({xtype:'loadmask'});
+      // view.setMasked({xtype:'loadmask'});
       Mate.ajax({
         url: Boot.appUrl('/sd/account/checkMt4Login.do'),
         params: {login: record.data.login},
         success: function (json, opts) {
-          //view.unmask();
+          // view.unmask();
           record.set({assets: json.assets})
         },
         failure: function (response, opts) {
-          //view.unmask();
+          // view.unmask();
           return false;
         }
       });

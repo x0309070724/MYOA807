@@ -26,7 +26,7 @@ Ext.define('APP.view.sd.account.detail.funds',{
 		'</div>',
 		'<div class="x-ui-right">',
 			'<tpl switch="cmd">',
-				// =====================================================================================出入金
+				// ====================================================================================出入金
 				'<tpl case="1">',
 					'<tpl if="direction==1">',
 						'<label>入金</label><b class="x-ui-font-number x-ui-text-green">{money:usMoney}</b>',

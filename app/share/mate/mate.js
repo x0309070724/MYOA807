@@ -9,7 +9,7 @@ Ext.define('APP.mate.mate', {
       // return 'ajax';
     },
     ajax: function (opts) {
-      console.log(opts);
+      // console.log(opts);
       // console.log(Mate.proxyType());
       switch (Mate.proxyType()) {
         case 'jsonp': {
