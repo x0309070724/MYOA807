@@ -48,23 +48,29 @@
   <!--<link rel="apple-touch-startup-image" sizes="1024x748" href="/resources/startup/1024x748.png">-->
   <!--<link rel="apple-touch-startup-image" sizes="2048x1496" href="/resources/startup/2048x1496.png">-->
   <!--link rel="stylesheet" type="text/css" href="//oss.thjzchina.com/ui/ui.css"-->
-  <!--<link rel="stylesheet" type="text/css" href="/OSS/ui/ui.css">-->
+  <link rel="stylesheet" type="text/css" href="/OSS/ui/ui.css">
   <style type="text/css">
     html, body {
+      position: relative;
       padding: 0 !important;
       margin: 0 !important;
-      background-color: #f5f5f7;
       width: 100%;
       height: 100%;
-      position: relative;
+      background-color: #f5f5f7;
+      /*-webkit-font-smoothing控制的字体渲染只对MacOS的Webkit有效,antialiased这个属性可以使页面上的字体抗锯齿,使用后字体看起来会
+      更清晰*/
       -webkit-font-smoothing: antialiased;
     }
   </style>
   <script type="text/javascript">
+    // 分号问题：一行开头是括号或者方括号的时候加上分号就可以了，其他时候全部不需要
     document.write('<' + 'script src="boot.js?rnd=' + Math.random() + '"' + '><' + '/script>');
-    //window.onerror=function(){return true}
+    /*window.onerror = function () {
+      return true;
+    };*/
     var Ext = Ext || {};
     Ext.beforeLoad = function (tags) {
+      // console.log(tags);
       Boot.upgrade();
       var timer = 0,
         rate = window.localStorage.length < 3 ? 200 : 50;
@@ -75,7 +81,7 @@
           timer = timer + 1;
           dom.innerHTML = timer + '%';
           if (!versionDom.state) {
-            versionDom.state = true
+            versionDom.state = true;
             versionDom.innerHTML = 'version ' + Boot.version;
           }
         }
@@ -87,6 +93,8 @@
       var ua = window.navigator.userAgent.toLowerCase(),
         s = location.search,
         profile, touch;
+      // console.log(window.navigator.userAgent);
+      // console.log(location);
       if (s.match(/\bclassic\b/)) {
         profile = 'classic';
         touch = false;
@@ -95,20 +103,20 @@
         touch = true;
       } else {
         profile = tags.desktop ? 'classic' : 'modern';
-        touch = tags.desktop ? false : true;
+        touch = !tags.desktop;
       }
       Ext.touch = touch;
       Ext.manifest = profile;
 
-      //Boot.loadJs('/OSS/lib/mt4/pushservice.js',true);
+      // Boot.loadJs('/OSS/lib/mt4/pushservice.js',true);
+      // src = //oss.thjzchina.com/lib/mtr/pushservice.js?_dc=......
       Boot.loadJs('//' + Boot.ossDomain + '/lib/mt4/pushservice.js', false);
       if (!Ext.touch) {
-        Boot.loadJs('//' + Boot.ossDomain + '/lib/highstock.js', true)
+        Boot.loadJs('//' + Boot.ossDomain + '/lib/highstock.js', true);
       }
-
       if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-        Boot.loadJs('//map.qq.com/api/js?v=2.exp', true)
-        Boot.loadJs('//res.wx.qq.com/open/js/jweixin-1.0.0.js', true)
+        Boot.loadJs('//map.qq.com/api/js?v=2.exp', true);
+        Boot.loadJs('//res.wx.qq.com/open/js/jweixin-1.0.0.js', true);
         Ext.weChat = true;
       }
     };

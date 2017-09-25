@@ -1,6 +1,6 @@
-//Ext.enableAria=false;
-//Ext.enableFx=false;
-//Ext.supports.MouseWheel=false;
+// Ext.enableAria=false;
+// Ext.enableFx=false;
+// Ext.supports.MouseWheel=false;
 Ext.ariaWarn = Ext.emptyFn;
 // Loads Ext.app.Application class and starts it up with given configuration after the page is ready.
 // config :  Object/String
@@ -38,12 +38,12 @@ Ext.application({
       return Ext.getCmp('mainViewport');
     }
   },
+
   setViewport: function (view) {
     var viewport = this.getViewport();
     viewport.removeAll();
     viewport.add(view);
   },
-
 
   getViewModel: function () {
     if (!this.getViewport()) {
@@ -51,11 +51,13 @@ Ext.application({
     }
     return this.getViewport().getViewModel();
   },
+
   getViewData: function (key) {
     var viewModel = this.getViewModel(),
       data = viewModel.getData();
     return key ? data[key] : data;
   },
+
   updateViewData: function (key, json) {
     // The ViewModel is a data provider for this component and its children. The data contained in the ViewModel is
     // typically used by adding bind configs to the components that want present or edit this data.
@@ -82,6 +84,7 @@ Ext.application({
       viewModel.set('time', Ext.Date.format(new Date(), 'Y-m-d H:i A'));
     }
   },
+
   getTeamTreeData: function (json) {
     var json = APP.app.data;
 
@@ -134,6 +137,7 @@ Ext.application({
     var teamTree = new treeMenu(json.company.team).init(0);
     return teamTree;
   },
+
   updateAccount: function (json) {
     var account = json.account,
       roleManager = Ext.String.format('{0}', account.post_manager).split(',');
@@ -158,6 +162,7 @@ Ext.application({
       };
     }
   },
+
   refreshMateData: function (callback) {
     // Mate.waiting('<h6>正在加载最新配置信息</h6>');
     var me = this;
@@ -192,7 +197,9 @@ Ext.application({
       }
     });
   },
+
   pushCount: 0,
+
   pushConnect: function () {
     var me = this,
       json = this.data;
@@ -280,9 +287,11 @@ Ext.application({
       }
     });
   },
+
   init: function () {
-    if (typeof(Worker) == 'undefined') {
-      Mate.error('<h6>浏览器版本过低</h6>请升级您的浏览器后继续...')
+    // console.log(Worker);
+    if (typeof(Worker) === 'undefined') {
+      Mate.error('<h6>浏览器版本过低</h6>请升级您的浏览器后继续...');
     }
     Ext.Date.formatCodes.a = "(this.getHours() < 12 ? 'AM' : 'PM')";
     Ext.Date.formatCodes.A = "(this.getHours() < 12 ? 'AM' : 'PM')";
@@ -310,21 +319,16 @@ Ext.application({
       }
     });
   }
-//	onAppUpdate:function(){
-//		window.location.reload();
-////        Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
-////            function(choice){
-////                if(choice==='yes'){
-////					Mate.clearStorage();
-////                    window.location.reload();
-////                }
-////            }
-////        );
-//    }
+
+  // onAppUpdate: function () {
+  //   window.location.reload();
+  //   Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
+  //     function (choice) {
+  //       if (choice === 'yes') {
+  //         Mate.clearStorage();
+  //         window.location.reload();
+  //       }
+  //     }
+  //   );
+  // }
 });
-
-
-
-
-
-

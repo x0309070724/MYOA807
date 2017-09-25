@@ -1,70 +1,125 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />   
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="format-detection" content="address=no">   
-    <link rel="apple-touch-icon-precomposed" href="/app/touch-icon.png">
-    <title id="oaTitle">天汇金泽</title>
-    <link rel="stylesheet" type="text/css" href="//oss.mt4-dc.net/ui/fonts/mate/fonts.css">
-    <style type="text/css">
-        html,body{padding:0!important;margin:0!important;background-color:#efeff4;width:100%;height:100%;position:relative;}
-		#appLoadingIndicator{
-			position:absolute;top:50%;left:50%;margin-top:-100px;margin-left:-100px;
-			font-size:12px;
-			width:200px;
-			height:200px;
-		}
-		#appLoadingIndicator:before{
-			display:block;content:'';width:100%;height:100%;
-			border:8px solid rgba(255,255,255,.88);
-			border-left:8px solid rgba(255,188,2,.88);
-			animation:update 5s infinite linear;
-			border-radius:50%;
-			background:rgba(255,255,255,.5) center center no-repeat;
-		}
-		#appLoadingIndicator > div{display:block;width:100%;height:100%;position:absolute;top:0;left:0;padding:70px 8px;text-align:center;font-size:22px;color:rgba(0,0,0,.3);line-height:20px;}
-		#appLoadingIndicator > div > s{font-size:12px;line-height:20px;font-family:Arial,Tahoma;font-weight:normal;color:#ccc;text-decoration:none;}
-		#appLoadingIndicator > div > b{font-size:48px;line-height:60px;font-family:Arial,Tahoma;font-weight:normal;color:#222;}
-		@keyframes update{
-		  0%{transform:rotate(0deg);}
-		  100%{transform:rotate(360deg);}
-		}
-    </style>
+  <!-- 声明文档使用的字符编码 -->
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <!--# 以下代码IE = edge告诉IE使用最新的引擎渲染网页，chrome = 1则可以激活Chrome（IE=Edge,chrome=1）-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 启用360浏览器的极速模式(webkit) -->
+  <meta name="renderer" content="webkit">
+  <!-- 为移动设备添加 viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <!-- 设置苹果工具栏颜色 -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- 忽略页面中的数字识别为电话，忽略address识别 -->
+  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="address=no">
+  <!--<link rel="apple-touch-icon-precomposed" href="/app/touch-icon.png">-->
+  <title id="oaTitle">天汇金泽</title>
+  <link rel="stylesheet" type="text/css" href="//oss.mt4-dc.net/ui/fonts/mate/fonts.css">
+  <style type="text/css">
+    html, body {
+      position: relative;
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100%;
+      height: 100%;
+      background-color: #efeff4;
+    }
+
+    #appLoadingIndicator {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -100px;
+      margin-left: -100px;
+      width: 200px;
+      height: 200px;
+      font-size: 12px;
+    }
+
+    #appLoadingIndicator:before {
+      display: block;
+      content: '';
+      width: 100%;
+      height: 100%;
+      border: 8px solid rgba(255, 255, 255, .88);
+      border-left: 8px solid rgba(255, 188, 2, .88);
+      animation: update 5s infinite linear;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .5) no-repeat center center;
+    }
+
+    #appLoadingIndicator > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 70px 8px;
+      width: 100%;
+      height: 100%;
+      line-height: 20px;
+      text-align: center;
+      font-size: 22px;
+      color: rgba(0, 0, 0, .3);
+    }
+
+    #appLoadingIndicator > div > s {
+      line-height: 20px;
+      font-size: 12px;
+      font-family: Arial, Tahoma serif;
+      font-weight: normal;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    #appLoadingIndicator > div > b {
+      line-height: 60px;
+      font-size: 48px;
+      font-family: Arial, Tahoma serif;
+      font-weight: normal;
+      color: #222;
+    }
+
+    @keyframes update {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 <body>
-    <div id="appLoadingIndicator">
-        <div>
-        	正在更新<br/>
-            <s id="version">1.0.0</s><br/>
-            <b id="s">50%</b>
-        </div>
-    </div>
+<div id="appLoadingIndicator">
+  <div>
+    正在更新<br/>
+    <s id="version">1.0.0</s><br/>
+    <b id="s">50%</b>
+  </div>
+</div>
 </body>
 </html>
 <script type="text/javascript" src="boot.js"></script>
 <script>
-	var s=0,
-		versionDom=document.getElementById('version'),
-		dom=document.getElementById('s');
-	versionDom.innerHTML='version '+Boot.version;
-	var task=window.setInterval(function(){
-		s=s+2;
-		dom.innerHTML=s+'%';
-		if(s>=100){
-			window.clearInterval(task);
-			window.localStorage.clear();
-			window.localStorage.setItem('version',Boot.version);
-			window.location.href='/';
-		}
-	},50);
+  var s = 0,
+    versionDom = document.getElementById('version'),
+    dom = document.getElementById('s');
+  versionDom.innerHTML = 'version ' + Boot.version;
+  var task = window.setInterval(function () {
+    s = s + 2;
+    dom.innerHTML = s + '%';
+    if (s >= 100) {
+      window.clearInterval(task);
+      window.localStorage.clear();
+      window.localStorage.setItem('version', Boot.version);
+      window.location.href = '/';
+    }
+  }, 50);
 </script>
