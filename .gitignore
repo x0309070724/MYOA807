@@ -6,7 +6,13 @@ SDK/
 log/
 .well-known/
 _/
-OSS/
+OSS/lib/
+OSS/ui/fonts/
+OSS/ui/icons/
+OSS/ui/images/
+OSS/ui/pc.css
+OSS/ui/touch.css
+OSS/web.config
 index/
 page/
 wechat/

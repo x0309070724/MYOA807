@@ -71,12 +71,12 @@
     }
   },
   onNavigationPush: function (navigation, view, eOpts) {
-    //document.title=record.data.text;
-    //console.log('Push',view.title)
-//		if(view.title){
-//			document.title=view.title;
-//		}
-//     console.log(view.xtype);
+    // document.title = record.data.text;
+    // console.log('Push', view.title)
+    // if (view.title) {
+    //   document.title = view.title;
+    // }
+    // console.log(view.xtype);
     if (view.xtype !== 'main' && view.xtype !== 'login') {
       var navbar = view.down('navbar');
       if (!navbar) {
@@ -91,10 +91,10 @@
     }
   },
   onNavigationPop: function (navigation, view, eOpts) {
-//		var view=navigation.getActiveItem()
-//		if(view.title){
-//			document.title=view.title;
-//		}
+    // var view = navigation.getActiveItem()
+    // if (view.title) {
+    //   document.title = view.title;
+    // }
     if (eOpts === 2) {
       // console.log('navigation controller');
       // Updates the hash on the window. This shouldn't need to be used directly but use the add method instead.

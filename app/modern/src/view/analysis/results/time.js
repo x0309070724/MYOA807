@@ -5,7 +5,6 @@ Ext.define('APP.view.analysis.results.time', {
   store: {
     type: 'analysis.results.trend',
     autoLoad: false,
-    // super????????????????????
     super: true,
     sorters: [{property: 'objects', direction: 'ASC'}]
   },
@@ -16,7 +15,7 @@ Ext.define('APP.view.analysis.results.time', {
   items: [
     {
       xtype: 'navbar', menu: [
-      {xtype: 'spacer'},
+      {xtype: 'spacer'}
       // {xtype: 'datepartbutton'}
     ]
     },
@@ -38,7 +37,7 @@ Ext.define('APP.view.analysis.results.time', {
       '{objects:ledgerDay}',
     '</div>',
     '<tpl switch="field">',
-    // =================================================================================================================开户量
+    // ===========================================================================================================开户量
       '<tpl case="account">',
         '<div class="x-ui-explain">',
           '<p><label>散户：</label>{account_new_count_sh:stringInteger}</p>',
@@ -48,7 +47,7 @@ Ext.define('APP.view.analysis.results.time', {
           '<label>开户量</label>',
           '<b>{account_new_count:stringInteger}</b>',
         '</div>',
-    // =================================================================================================================净入金
+    // ===========================================================================================================净入金
       '<tpl case="funds">',
         '<div class="x-ui-explain">',
           '<p class="x-ui-text-green"><label>入金：</label>{funds_deposit:money}</p>',
@@ -58,7 +57,7 @@ Ext.define('APP.view.analysis.results.time', {
           '<label>净入金</label>',
           '<b>{funds_net_deposit:money}</b>',
         '</div>',
-    // =================================================================================================================交易量
+    // ===========================================================================================================交易量
       '<tpl case="volume">',
         '<div class="x-ui-explain">',
           '<p><label>散户：</label>{trade_volume_sh:stringNumeral(2)}</p>',

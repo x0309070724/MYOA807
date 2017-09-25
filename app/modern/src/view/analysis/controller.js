@@ -1,7 +1,7 @@
 ﻿Ext.define('APP.view.analysis.controller', {
   extend: 'APP.view.controller',
   alias: 'controller.analysis',
-  // ==============================================================================================================INDEX
+  // =============================================================================================================INDEX
   getIndexData: function (callback) {
     Mate.ajax({
       url: Boot.appUrl('/super/getTrend.do'),
@@ -44,10 +44,7 @@
       interval: 1000 * 60 * 3
     });
   },
-
-
-  //=====================================================================================================================业绩 按对象统计
-  //===============================================================LIST ITEM 点击
+  // =====================================================================================================业绩 按对象统计
   onObjectsItemtap: function (list, idx, el, record) {
     var menu = this.menu || Ext.create({
       xtype: 'actionsheet',
@@ -58,7 +55,7 @@
       items: [
         {text: '月报表', datepart: 'month', iconCls: 'f-mt mt-month'},
         {text: '周报表', datepart: 'week', iconCls: 'f-mt mt-week'},
-        //{text:'日报表',datepart:'day',iconCls:'f-mt mt-day'},
+        // {text:'日报表',datepart:'day',iconCls:'f-mt mt-day'},
         {xtype: 'component', height: 10},
         {text: '业绩详情', iconCls: 'f-mt mt-month', ui: 'border orange', handler: 'onObjectsDetailShow'}
       ]
@@ -67,9 +64,9 @@
     menu.setRecord(record);
     menu.setDisplayed(!menu.getDisplayed());
   },
-  //===============================================================LIST MENU ITEM DATEPART 点击
+  // =======================================================================================LIST MENU ITEM DATEPART 点击
   onObjectsMenuItemClick: function (button) {
-    //Ext.Viewport.hideMenu('bottom');
+    // Ext.Viewport.hideMenu('bottom');
     button.up('actionsheet').setDisplayed(false);
     var navigation = this.getView().up('navigationview'),
       list = navigation.down('list'),
@@ -83,8 +80,6 @@
         startdate: Ext.Date.format(Ext.Date.add(new Date(), Ext.Date.MONTH, -5), 'Y-m'),
         enddate: Ext.Date.format(new Date(), 'Y-m')
       };
-
-
     switch (params.menu) {
       case 'staff': {
         title = record.data.team_name + ' ' + record.data.objects;
@@ -104,7 +99,7 @@
       }
         break;
     }
-    if (params.menu == 'staff') {
+    if (params.menu === 'staff') {
       var startDate = record.data.startdate,
         endDate = record.data.enddate || new Date();
       switch (params.datepart) {
@@ -143,8 +138,7 @@
           break;
       }
     }
-
-    var widget = list.name == 'operations' ? 'analysisOperationsObjectsTime' : 'analysisResultsObjectsTime',
+    var widget = list.name === 'operations' ? 'analysisOperationsObjectsTime' : 'analysisResultsObjectsTime',
       view = Ext.create({
         xtype: widget,
         title: title,
@@ -204,20 +198,19 @@
     });
     navigation.push(view);
   },
-
-  //=====================================================================================================================LIST 按时间统计
-  //===============================================================LIST ITEM 点击
+  // =====================================================================================================LIST 按时间统计
   onTimeItemtap: function (list, idx, el, record) {
     var navigation = list.up('navigationview'),
       store = list.getStore(),
       title,
-      parameter = Ext.apply({}, store.getProxy().getExtraParams())
+      parameter = Ext.apply({}, store.getProxy().getExtraParams());
     parameter.field = '';
     parameter.startdate = record.data.objects;
     parameter.enddate = record.data.objects;
     switch (parameter.datepart) {
       case 'day': {
-        var wName = '周' + new Array('日', '一', '二', '三', '四', '五', '六')[new Date(record.data.objects).getDay()];
+        // var wName = '周' + new Array('日', '一', '二', '三', '四', '五', '六')[new Date(record.data.objects).getDay()];
+        var wName = '周' + ['日', '一', '二', '三', '四', '五', '六'][new Date(record.data.objects).getDay()];
         title = '业绩日报 · ' + record.data.objects + ' ' + wName;
       }
         break;
@@ -237,18 +230,17 @@
     });
     navigation.push(view);
   },
-
-  //===============================================================报表详情
+  // ============================================================================================================报表详情
   onDetailInitialize: function (view) {
     view.setMasked({xtype: 'loadmask'});
+    var url = '';
     if (view.parameter.menu) {
       view.parameter.sp = 'SP_SD_RESULTS_STATISTICS';
-      var url = '/super/getStatistics.do';
+      url = '/super/getStatistics.do';
     } else {
       view.parameter.sp = 'SP_SD_RESULTS_TREND';
-      var url = '/super/getTrend.do';
+      url = '/super/getTrend.do';
     }
-
     Mate.ajax({
       url: Boot.appUrl(url),
       params: view.parameter,
@@ -257,7 +249,7 @@
         if (json.plant[0]) {
           view.setData(json.plant[0]);
         } else {
-          Mate.showTask('<h6>信息提示</h6>所查询的数据不存在')
+          Mate.showTask('<h6>信息提示</h6>所查询的数据不存在');
         }
       },
       failure: function (response, opts) {
@@ -266,5 +258,4 @@
       }
     });
   }
-
 });
