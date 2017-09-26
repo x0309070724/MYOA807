@@ -300,20 +300,26 @@ Ext.application({
         var utilDate = Ext.Date,
           formatFunctions = utilDate.formatFunctions;
         if (!date) {
-          return ''
+          return '';
         }
-        //if(!isNaN(date)&&date.toString().length==10){date=date*1000}
+        // if (!isNaN(date) && date.toString().length === 10) {
+        //   date = date * 1000
+        // }
         if (!Ext.isDate(date)) {
-          date = new Date(date)
+          date = new Date(date);
         }
         var utc = date.getTime(),
           localTimeZone = -(new Date().getTimezoneOffset() / 60),
-          timeZone = Mate.getCache('settings/timeZone') || 8,
-          date = utc - (3600000 * (localTimeZone - timeZone)), 		//计算的区时=已知区时-（已知区时的时区-要计算区时的时区），（注：东时区为正，西时区为负）
-          date = new Date(date);
-
+          timeZone = Mate.getCache('settings/timeZone') || 8;
+        // 计算的区时 = 已知区时 -（已知区时的时区 - 要计算区时的时区），（注：东时区为正，西时区为负）
+        date = utc - (3600000 * (localTimeZone - timeZone));
+        date = new Date(date);
+        // console.log(formatFunctions[format]);
+        // if (formatFunctions[format] === undefined) {
+        //   utilDate.createFormat(format);
+        // }
         if (formatFunctions[format] == null) {
-          utilDate.createFormat(format)
+          utilDate.createFormat(format);
         }
         return formatFunctions[format].call(date);
       }

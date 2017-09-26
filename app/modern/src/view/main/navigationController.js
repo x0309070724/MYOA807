@@ -199,8 +199,8 @@
     var me = this;
     if (typeof(wx) !== 'undefined') {
       me.wechatAuthorization();
-      //view.setActiveItem({xtype:'bindForm'})
-      //window.location.href='http://localhost:999/wechat/#/authorize/bind.html?backUrl='+escape(window.location.href);
+      // view.setActiveItem({xtype: 'bindForm'});
+      // window.location.href = 'http://localhost:999/wechat/#/authorize/bind.html?backUrl=' + escape(window.location.href);
     } else {
       view.setActiveItem({xtype: 'loginForm'})
     }

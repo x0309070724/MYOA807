@@ -116,8 +116,8 @@
           {root: 1000, xtype: 'sdIndex', title: '销售', iconCls: 'f-mt mt-access', userCls: 'x-ui-corange'},
           {root: 2000, xtype: 'rdIndex', title: '交易', iconCls: 'f-mt mt-chart-4', userCls: 'x-ui-gold'},
           {root: 3000, xtype: 'hrIndex', title: '通讯录', iconCls: 'f-mt mt-additve', userCls: 'x-ui-gold'},
-          {root: 4000, xtype: 'analysisIndex', title: '设置', iconCls: 'f-mt mt-chart-pie-3', userCls: 'x-ui-orange'}
-          // {root: 5000, xtype: 'accountIndex', title: '我', iconCls: 'f-mt mt-account-audit', userCls: 'x-ui-green'}
+          {root: 4000, xtype: 'analysisIndex', title: '设置', iconCls: 'f-mt mt-chart-pie-3', userCls: 'x-ui-orange'},
+          {root: 5000, xtype: 'accountIndex', title: '我', iconCls: 'f-mt mt-account-audit', userCls: 'x-ui-green'}
         ];
       }
         break;
@@ -149,7 +149,7 @@
         if (typeof(wx) !== 'undefined') {
           wx.closeWindow();
         } else {
-          window.location.href = '/wechat/index.html#/authorize/index.html'
+          window.location.href = '/wechat/index.html#/authorize/index.html';
         }
       });
       return false;

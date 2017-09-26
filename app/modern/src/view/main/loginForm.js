@@ -81,9 +81,16 @@ Ext.define('APP.view.main.loginForm', {
       iconAlign: 'center',
       handler: 'onLoginFormSubmit'
     }
-//		{xtype:'container',cls:'x-ui-api',defaults:{xtype:'button',border:false},layout:{type:'hbox',align:'middle',pack:'center'},margin:'100 0 0 0',items:[
-//			{iconCls:'f-mt mt-wechat',ui:'green round large',handler:'onLoginFromWechat'},
-//			{iconCls:'f-mt mt-qq',ui:'blue round large',handler:'onLoginFromQq',margin:'0 0 0 30'}
-//		]}
+    // {
+    //   xtype: 'container',
+    //   cls: 'x-ui-api',
+    //   defaults: {xtype: 'button', border: false},
+    //   layout: {type: 'hbox', align: 'middle', pack: 'center'},
+    //   margin: '100 0 0 0',
+    //   items: [
+    //     {iconCls: 'f-mt mt-wechat', ui: 'green round large', handler: 'onLoginFromWechat'},
+    //     {iconCls: 'f-mt mt-qq', ui: 'blue round large', handler: 'onLoginFromQq', margin: '0 0 0 30'}
+    //   ]
+    // }
   ]
 });

@@ -47,14 +47,3 @@ Ext.define('APP.view.hr.staff.contactsDetail', {
     initialize: 'onContactsDetailInitialize'
   }
 });
-
-
-
-
-
-
-
-
-
-
-

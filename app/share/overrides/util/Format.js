@@ -250,80 +250,86 @@ Ext.define('Override.util.Format', {
     if (!value) {
       return;
     }
-    ;
-    var type = type ? type : '11',
-      nameX = Dic.toPinyin(value.substr(0, 1)),
+    type = type ? type : '11';
+    var nameX = Dic.toPinyin(value.substr(0, 1)),
       nameM = Dic.toPinyin(value.substr(1, value.length));
+    // console.log(nameX);
+    // console.log(nameX.substr(1, nameX.length).replace(' ', '')+'ha');
+    // console.log(nameX.substr(1, nameX.length)+'ha');
+    var X, M, XM, newXM, arrXM;
     switch (type) {
       case '11': {
-        var X = nameX.substr(0, 1).toUpperCase() + nameX.substr(1, nameX.length).replace(' ', ''),
-          M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length).replace(' ', '');
+        X = nameX.substr(0, 1).toUpperCase() + nameX.substr(1, nameX.length).replace(' ', '');
+        M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length).replace(' ', '');
         return X + ' ' + M;
       }
         break;
       case '12': {
-        var X = nameX.substr(0, 1).toUpperCase() + nameX.substr(1, nameX.length),
-          M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length),
-          XM = X + ' ' + M, arrXM = XM.split(' '), newXM = '';
-        for (i = 0; i < arrXM.length; i++) {
-          newXM += arrXM[i].substr(0, 1).toUpperCase() + arrXM[i].substr(1, arrXM[i].length) + ' '
+        X = nameX.substr(0, 1).toUpperCase() + nameX.substr(1, nameX.length);
+        M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length);
+        XM = X + ' ' + M;
+        arrXM = XM.split(' ');
+        newXM = '';
+        for (var i = 0; i < arrXM.length; i++) {
+          newXM += arrXM[i].substr(0, 1).toUpperCase() + arrXM[i].substr(1, arrXM[i].length) + ' ';
         }
         return newXM;
       }
         break;
       case '13': {
-        var X = nameX.toUpperCase().replace(' ', ''),
-          M = nameM.toUpperCase().replace(' ', '');
+        X = nameX.toUpperCase().replace(' ', '');
+        M = nameM.toUpperCase().replace(' ', '');
         return X + ' ' + M;
       }
-        ;
         break;
       case '14': {
-        var X = nameX.toUpperCase(),
-          M = nameM.toUpperCase();
+        X = nameX.toUpperCase();
+        M = nameM.toUpperCase();
         return X + ' ' + M;
       }
         break;
       case '21': {
-        var X = nameX.substr(0, 1).toUpperCase() + nameX.substr(1, nameX.length).replace(' ', ''),
-          M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length).replace(' ', '');
+        X = nameX.substr(0, 1).toUpperCase() + nameX.substr(1, nameX.length).replace(' ', '');
+        M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length).replace(' ', '');
         return M + ' ' + X;
       }
         break;
       case '22': {
-        var X = nameX.substr(0, 1).toUpperCase() + nameX.substr(1, nameX.length),
-          M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length), XM = M + ' ' + X, arrXM = XM.split(' '),
-          newXM = '';
+        X = nameX.substr(0, 1).toUpperCase() + nameX.substr(1, nameX.length);
+        M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length);
+        XM = M + ' ' + X;
+        arrXM = XM.split(' ');
+        newXM = '';
         for (i = 0; i < arrXM.length; i++) {
-          newXM += arrXM[i].substr(0, 1).toUpperCase() + arrXM[i].substr(1, arrXM[i].length) + ' '
+          newXM += arrXM[i].substr(0, 1).toUpperCase() + arrXM[i].substr(1, arrXM[i].length) + ' ';
         }
         return newXM;
       }
         break;
       case '23': {
-        var X = nameX.toUpperCase().replace(' ', ''),
-          M = nameM.toUpperCase().replace(' ', '');
+        X = nameX.toUpperCase().replace(' ', '');
+        M = nameM.toUpperCase().replace(' ', '');
         return M + ' ' + X;
       }
         break;
       case '24': {
-        var X = nameX.toUpperCase(),
-          M = nameM.toUpperCase();
+        X = nameX.toUpperCase();
+        M = nameM.toUpperCase();
         return M + ' ' + X;
       }
         break;
       case '31': {
-        var X = nameX.toUpperCase(),
-          M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length).replace(' ', '');
+        X = nameX.toUpperCase();
+        M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length).replace(' ', '');
         return X + ' ' + M;
       }
         break;
       default: {
-        var X = nameX.substr(0, 1).toUpperCase() + nameX.substr(1, nameX.length).replace(' ', ''),
-          M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length).replace(' ', '');
-        return X + ' ' + M
+        X = nameX.substr(0, 1).toUpperCase() + nameX.substr(1, nameX.length).replace(' ', '');
+        M = nameM.substr(0, 1).toUpperCase() + nameM.substr(1, nameM.length).replace(' ', '');
+        return X + ' ' + M;
       }
-        break
+        break;
     }
   },
   strAudit: function (value, isIcon) {

@@ -4,10 +4,10 @@ Ext.define('APP.view.main.login', {
   userCls: 'x-ui-login',
   controller: 'navigation',
   layout: 'card',
-//	items:[
-//		//{xtype:'loginForm'},
-//		{xtype:'bindForm'}
-//	],
+  // items: [
+  //   // {xtype: 'loginForm'},
+  //   {xtype: 'bindForm'}
+  // ],
   listeners: {
     initialize: 'onLoginInitialize'
   }

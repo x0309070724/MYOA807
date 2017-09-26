@@ -8,7 +8,7 @@
         rootVisible: false,
         root: {expanded: true, children: data}
       });
-    console.log(data);
+    // console.log(data);
     store.sort('sortnum', 'ASC');
     tree.setStore(store);
   },
@@ -20,7 +20,7 @@
       staffTeamArr = [],
       staffStore = tree.getStore();
     // console.log(staffStore);
-    console.log(staffData);
+    // console.log(staffData);
     Ext.Array.each(staffData, function (record) {
       if (record.departmentid !== 106) {
         if (!staffArr[record.teamid]) {
