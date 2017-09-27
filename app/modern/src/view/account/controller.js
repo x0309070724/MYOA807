@@ -1,15 +1,13 @@
 ﻿Ext.define('APP.view.account.controller', {
   extend: 'APP.view.controller',
   alias: 'controller.account',
-
-
-  //==============================================退出系统
+  // ===========================================================================================================退出系统
   onLogoutTap: function (button) {
     Mate.confirm('<h6>确定要退出系统？</h6>退出后，将清空当前登录用户的缓存信息并返回至登录界面...',
       function (button) {
-        if (button == 'yes') {
+        if (button === 'yes') {
           APP.app.getViewport().setMasked({xtype: 'loadmask', message: 'Exiting...'});
-          //Mate.waiting('<h6>正在安全退出系统</h6>请等待指令执行完成...');
+          // Mate.waiting('<h6>正在安全退出系统</h6>请等待指令执行完成...');
           Mate.ajax({
             url: Boot.appUrl('/outLogin.do'),
             success: function (data, opts) {
@@ -154,8 +152,5 @@
         }
       });
     }
-
   }
-
-
 });

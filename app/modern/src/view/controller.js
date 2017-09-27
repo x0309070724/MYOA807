@@ -49,19 +49,16 @@
     var navigation = button.up('navigationview');
     navigation.pop();
   },
-
   /*NVABAR MENU*/
   onRefreshSegmentedButtonToggle: function (container, button, pressed) {
     var view = this.getView();
     if (pressed) {
       var store = view.getStore();
-      //store.removeAll();
+      // store.removeAll();
       Ext.apply(store.getProxy().getExtraParams(), button.getData());
       store.loadPage(1);
     }
   },
-
-
   // =================================================================================================Store Apply后 LOAD
   onApplyStoreLoad: function (view) {
     // var me = this;
@@ -162,7 +159,7 @@
     tabpanel.setActiveItem(activeItem);
     tabbar.setUserCls(tabpanel.getActiveItem().getUserCls());
   },
-  // ==========================================================================================MAIN 选项卡切换时 记录缓存
+  // ===========================================================================================MAIN 选项卡切换时 记录缓存
   onMainTabChange: function (tab, e) {
     // 不传第二个参数，浏览器自动配置时间，在IE，FireFox中，第一次配可能给个很大的数字，100ms上下，往后会缩小到最小时间间隔，
     // Safari，chrome，opera则多为10ms上下。

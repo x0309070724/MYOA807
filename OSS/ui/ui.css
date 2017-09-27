@@ -1201,59 +1201,61 @@ strong, b {
 .x-ui-app-loading,
 .x-ui-app-loading:before,
 .x-ui-app-loading:after {
-  display: block;
-  border-radius: 100%;
-  border: 10px transparent solid;
-  position: absolute;
   content: '';
+  display: block;
+  position: absolute;
+  border-radius: 100%;
+  border: 10px solid transparent;
   box-sizing: border-box;
   z-index: 1;
 }
 
 .x-ui-app-loading {
   position: relative;
-  width: 380px;
-  height: 380px;
-  border-color: rgba(255, 255, 255, .98);
-  position: relative;
   top: 50%;
   left: 50%;
   margin-top: -190px;
   margin-left: -190px;
-  background: url(images/logo.png) rgba(255, 255, 255, .9) center 90px no-repeat;
+  width: 380px;
+  height: 380px;
+  border-color: rgba(255, 255, 255, .98);
+  background: rgba(255, 255, 255, .9) url(images/logo.png) no-repeat center 90px;
   background-size: 260px;
 }
 
 .x-ui-app-loading:before {
+  left: 0;
+  top: 0;
   width: 360px;
   height: 360px;
   border-top-color: #f6faff;
   border-bottom-color: #f6faff;
-  left: 0px;
-  top: 0px;
+  /*animation: name duration timing-function delay iteration-count direction;*/
   animation: processingInside 1.5s linear 0s infinite;
 }
 
 .x-ui-app-loading:after {
+  left: -22px;
+  top: -22px;
   width: 400px;
   height: 400px;
   border-left-color: #ffc002;
   border-right-color: #ffc002;
-  left: -22px;
-  top: -22px;
   animation: processingOuter 12s linear 0s infinite;
 }
 
 .x-ui-app-loading > p {
   position: relative;
-  width: 300px;
   margin: 200px 0 0 60px;
+  width: 300px;
   font-weight: 300;
-  font-family: Arial;
+  /*因为没有定义 “generic-family”即 字体的所属风格。 例如：serif，sans-serif，cursive。*/
+  font-family: Arial, serif;
 }
 
 .x-ui-app-loading > p > span {
   display: block;
+  /*设置数字，此数字会与当前的字体尺寸相乘来设置行间距。*/
   line-height: 1.1;
 }
 
@@ -1269,21 +1271,21 @@ strong, b {
 }
 
 .x-ui-app-loading > p > span:nth-child(3) {
+  padding-left: 3px;
+  line-height: 3;
   font-size: 12px;
   color: rgba(0, 0, 0, .2);
-  line-height: 3;
-  padding-left: 3px;
 }
 
 .x-ui-app-loading > p > b {
   position: absolute;
-  top: 0px;
+  top: 0;
   right: 50px;
-  font-size: 32px;
-  line-height: 1;
   padding: 20px 0;
+  line-height: 1;
+  font-size: 32px;
   color: rgba(0, 0, 0, .08);
-  font-family: Arial;
+  font-family: Arial, serif;
   font-weight: normal;
 }
 
